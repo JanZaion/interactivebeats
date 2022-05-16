@@ -9,10 +9,16 @@ const Sequencer = () => {
     chords: [false, false, false, false],
   });
 
+  const [metro, setMetro] = useState(false);
+
   const player = (group, id) => {
     const nowPlay = [false, false, false, false];
     nowPlay[id] = !play[group][id];
-    setPlay({ ...play, [group]: nowPlay });
+    const newPlay = { ...play, [group]: nowPlay };
+    setPlay(newPlay);
+
+    const { drums, bass, chords, melody } = newPlay;
+    setMetro([...drums, ...bass, ...chords, ...melody].filter((state) => state === true).length > 0);
   };
 
   return (
@@ -23,7 +29,7 @@ const Sequencer = () => {
         ))}
       </div>
       <div>{JSON.stringify(play)}</div>
-      <div>{`isplaying: ${play}`}</div>
+      <div>{`isplaying: ${metro}`}</div>
     </main>
   );
 };
