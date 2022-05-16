@@ -1,12 +1,18 @@
 import { useState } from 'react';
 
-const Pad = () => {
+const Pad = (props) => {
   const [play, setPlay] = useState(false);
-  //move this state to the top of the component hierarchy
+  const { player, id, group } = props;
+
   return (
-    <button className="pad" onClick={() => setPlay(!play)}>
+    <button
+      className="pad"
+      onClick={() => {
+        const thisPadState = player(group, id);
+        setPlay(thisPadState);
+      }}
+    >
       <div className={play ? 'square' : 'triangle'} />
-      <div />
     </button>
   );
 };
