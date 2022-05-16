@@ -10,27 +10,20 @@ const Sequencer = () => {
   });
 
   const player = (group, id) => {
-    const nowPlaying = [false, false, false, false];
-    setPlay({ ...play, [group]: nowPlaying });
-
-    nowPlaying[id] = !play[group][id];
-    setPlay({ ...play, [group]: nowPlaying });
-
-    return !play[group][id];
+    const nowPlay = [false, false, false, false];
+    nowPlay[id] = !play[group][id];
+    setPlay({ ...play, [group]: nowPlay });
   };
 
   return (
     <main className="appContainer">
       <div className="sequencerBox">
-        {/* <InstrumentGroup group={'drums'} player={player} groupStates={play['drums']} />
-        <InstrumentGroup group={'bass'} player={player} />
-        <InstrumentGroup group={'melody'} player={player} />
-        <InstrumentGroup group={'chords'} player={player} /> */}
         {Object.keys(play).map((group, index) => (
           <InstrumentGroup key={index} group={group} player={player} groupStates={play[group]} />
         ))}
       </div>
-      <div>{`isplaying: ${JSON.stringify(play)}`}</div>
+      <div>{JSON.stringify(play)}</div>
+      <div>{`isplaying: ${play}`}</div>
     </main>
   );
 };
