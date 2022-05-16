@@ -22,10 +22,13 @@ const Sequencer = () => {
   return (
     <main className="appContainer">
       <div className="sequencerBox">
-        <InstrumentGroup group={'drums'} player={player} />
+        {/* <InstrumentGroup group={'drums'} player={player} groupStates={play['drums']} />
         <InstrumentGroup group={'bass'} player={player} />
         <InstrumentGroup group={'melody'} player={player} />
-        <InstrumentGroup group={'chords'} player={player} />
+        <InstrumentGroup group={'chords'} player={player} /> */}
+        {Object.keys(play).map((group, index) => (
+          <InstrumentGroup key={index} group={group} player={player} groupStates={play[group]} />
+        ))}
       </div>
       <div>{`isplaying: ${JSON.stringify(play)}`}</div>
     </main>
