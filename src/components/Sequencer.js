@@ -12,12 +12,12 @@ const Sequencer = () => {
   const [metro, setMetro] = useState(false);
 
   const player = (group, id) => {
-    const nowPlay = [false, false, false, false];
-    nowPlay[id] = !play[group][id];
-    const newPlay = { ...play, [group]: nowPlay };
-    setPlay(newPlay);
+    const updatedGroup = [false, false, false, false];
+    updatedGroup[id] = !play[group][id];
+    const updatedPlay = { ...play, [group]: updatedGroup };
+    setPlay(updatedPlay);
 
-    const { drums, bass, chords, melody } = newPlay;
+    const { drums, bass, chords, melody } = updatedPlay;
     setMetro([...drums, ...bass, ...chords, ...melody].filter((state) => state === true).length > 0);
   };
 
