@@ -18,7 +18,7 @@ const Sequencer = () => {
     setPlay(updatedPlay);
 
     const { drums, bass, chords, melody } = updatedPlay;
-    setMetro([...drums, ...bass, ...chords, ...melody].filter((state) => state === true).length > 0);
+    setMetro([...drums, ...bass, ...chords, ...melody].some((e) => e) > 0);
   };
 
   return (
@@ -28,6 +28,7 @@ const Sequencer = () => {
           <InstrumentGroup key={index} group={group} player={player} groupStates={play[group]} />
         ))}
       </div>
+      {/* clean these two when done */}
       <div>{JSON.stringify(play)}</div>
       <div>{`isplaying: ${metro}`}</div>
     </main>
