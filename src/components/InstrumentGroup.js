@@ -1,8 +1,6 @@
 import Pad from './Pad';
 
-const InstrumentGroup = (props) => {
-  const { group, player, groupStates } = props;
-
+const InstrumentGroup = ({ group, player, groupStates }) => {
   return (
     <div className="instrumentGroup">
       <div className="instrumentGroupName">{group}</div>
