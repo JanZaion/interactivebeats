@@ -1,12 +1,9 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useEffect } from 'react';
 import * as Tone from 'tone';
+import { BPM, numOfPads, groupParams } from '../constants/fixedParams';
 
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-Tone.Transport.bpm.value = parseFloat(142);
-
-const numOfPads = [0, 1, 2, 3];
 
 const createLoops = (group, numOfPads, measure) => {
   return numOfPads.map(
@@ -17,11 +14,12 @@ const createLoops = (group, numOfPads, measure) => {
   );
 };
 
+//refac to make programmaticaly
 const loops = {
-  drums: createLoops('drums', [...numOfPads], '4n'),
-  bass: createLoops('bass', [...numOfPads], '4n'),
-  melody: createLoops('melody', [...numOfPads], '4n'),
-  chords: createLoops('chords', [...numOfPads], '4n'),
+  drums: createLoops('drums', [...numOfPads], groupParams.drums.measure),
+  bass: createLoops('bass', [...numOfPads], groupParams.bass.measure),
+  melody: createLoops('melody', [...numOfPads], groupParams.melody.measure),
+  chords: createLoops('chords', [...numOfPads], groupParams.chords.measure),
 };
 
 const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
@@ -29,6 +27,8 @@ const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(sta
 const stopLoop = (loops, id, group, stopMeasure) => loops[group][id].stop(stopMeasure);
 
 //This should stay here, the stuff above should be moved to a different file
+Tone.Transport.bpm.value = BPM;
+
 const Sequencer = () => {
   const [play, setPlay] = useState({
     drums: [false, false, false, false],
@@ -43,10 +43,10 @@ const Sequencer = () => {
     transportRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
   }, [transportRunning]);
 
-  const player = (group, id) => {
+  const player = (group, id, groupParams) => {
     Tone.start(); //ctx keeps saying suspended for some reason. Hopefuly not a problem
     const trackPlaying = play[group].indexOf(true);
-    trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, '4n');
+    trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, groupParams[group].measure);
 
     const updatedGroup = [false, false, false, false];
     updatedGroup[id] = !play[group][id];
@@ -57,7 +57,7 @@ const Sequencer = () => {
     const { drums, bass, chords, melody } = updatedPlay;
     setTransportRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
 
-    trackPlaying !== id && startLoop(loops, id, group, '4n');
+    trackPlaying !== id && startLoop(loops, id, group, groupParams[group].measure);
   };
 
   return (
