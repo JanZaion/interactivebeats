@@ -7,18 +7,21 @@ const ctx = new (window.AudioContext || window.webkitAudioContext)();
 Tone.Transport.bpm.value = parseFloat(142);
 
 const numOfPads = [0, 1, 2, 3];
-const createLoop = (group, id) => {
-  //'4n' should prly nto be the same for all groups. perform a check here that will decide this based on group
-  return new Tone.Loop(() => {
-    console.log(group, id);
-  }, '4n');
+
+const createLoops = (group, numOfPads, measure) => {
+  return numOfPads.map(
+    (id) =>
+      new Tone.Loop(() => {
+        console.log(group, id);
+      }, measure)
+  );
 };
 
 const loops = {
-  drums: [...numOfPads].map((id) => createLoop('drums', id)),
-  bass: [...numOfPads].map((id) => createLoop('bass', id)),
-  melody: [...numOfPads].map((id) => createLoop('melody', id)),
-  chords: [...numOfPads].map((id) => createLoop('chords', id)),
+  drums: createLoops('drums', [...numOfPads], '4n'),
+  bass: createLoops('bass', [...numOfPads], '4n'),
+  melody: createLoops('melody', [...numOfPads], '4n'),
+  chords: createLoops('chords', [...numOfPads], '4n'),
 };
 
 const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
