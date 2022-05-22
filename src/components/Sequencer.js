@@ -6,10 +6,6 @@ const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
 Tone.Transport.bpm.value = parseFloat(142);
 
-// const topLoop = new Tone.Loop((time) => {
-//   console.log(Tone.Transport.position);
-// }, '8n').start('1m');
-
 const numOfPads = [0, 1, 2, 3];
 const createLoop = (group, id) => {
   //'4n' should prly nto be the same for all groups. perform a check here that will decide this based on group
@@ -25,15 +21,9 @@ const loops = {
   chords: [...numOfPads].map((id) => createLoop('chords', id)),
 };
 
-const startLoop = (loops, id, group, startMeasure) => {
-  //start measure might not need to be arg, maybe just figure it out by group
-  //prev state will be important here, coz we need to stop the loop that playd before
-  loops[group][id].start(startMeasure);
-};
+const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
 
-const stopLoop = (loops, id, group, stopMeasure) => {
-  loops[group][id].stop(stopMeasure);
-};
+const stopLoop = (loops, id, group, stopMeasure) => loops[group][id].stop(stopMeasure);
 
 //This should stay here, the stuff above should be moved to a different file
 const Sequencer = () => {
@@ -52,6 +42,9 @@ const Sequencer = () => {
 
   const player = (group, id) => {
     Tone.start(); //ctx keeps saying suspended for some reason. Hopefuly not a problem
+    const trackPlaying = play[group].indexOf(true);
+    trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, '4n');
+
     const updatedGroup = [false, false, false, false];
     updatedGroup[id] = !play[group][id];
     const updatedPlay = { ...play, [group]: updatedGroup };
@@ -61,8 +54,7 @@ const Sequencer = () => {
     const { drums, bass, chords, melody } = updatedPlay;
     setTransportRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
 
-    startLoop(loops, id, group, '4n');
-    stopLoop(loops, id, group, '1m');
+    trackPlaying !== id && startLoop(loops, id, group, '4n');
   };
 
   return (
