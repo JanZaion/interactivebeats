@@ -1,24 +1,18 @@
 import { groupParams } from '../constants/fixedParams';
 import * as Tone from 'tone'; //maybe only import individual methods
 
-const makeAnimation = (playPad, prevPlayPad, group) => {
-  // if (playPad === prevPlayPad) return '';
-
-  const animationName = `${group}Anim`;
+const pickAnimation = (playPad, prevPlayPad, group, groupParams) => {
   const animationTime = '1s';
-  // const animationDirrection = playPad ? 'forwards' : 'backwards';
-  let animationDirrection;
+  if (playPad === false && prevPlayPad === false) return { animation: ``, background: `` };
+  if (playPad === true && prevPlayPad === true) return { animation: ``, background: `${groupParams[group].color}` };
   if (playPad === true && prevPlayPad === false)
-    return { animation: `${animationName} ${animationTime} forwards`, background: '' };
+    return { animation: `${group}StartAnim ${animationTime}`, background: `${groupParams[group].color}` };
   if (playPad === false && prevPlayPad === true)
-    return { animation: `${animationName} ${animationTime} forwards`, background: 'yellow' };
-  if (playPad === prevPlayPad) return { animation: ``, background: '' };
-
-  // return `${animationName} ${animationTime} ${animationDirrection}`;
+    return { animation: `${group}StopAnim ${animationTime}`, background: `` };
 };
 
 const Pad = ({ player, id, group, playPad, prevPlayPad }) => {
-  const { animation, background } = makeAnimation(playPad, prevPlayPad, group);
+  const { animation, background } = pickAnimation(playPad, prevPlayPad, group, groupParams);
 
   return (
     <button className="pad" onClick={() => player(group, id, groupParams)} style={{ animation, background }}>
