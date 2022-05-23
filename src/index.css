@@ -10,6 +10,11 @@ body {
 :root {
   --playbuttongap-grid-gap: 0.1rem;
   --pad-max-width: 380px;
+  --pad-resting-background-color: lightgray;
+  --pad-drums-background-color: yellow;
+  --pad-bass-background-color: blue;
+  --pad-chords-background-color: purple;
+  --pad-melody-background-color: green;
 }
 
 header {
@@ -81,4 +86,64 @@ header {
   width: 33%;
   height: 32%;
   background: rgb(160, 165, 160);
+}
+
+@keyframes drumsAnim {
+  0% {
+    background-color: var(--pad-resting-background-color);
+  }
+  25% {
+    background-color: var(--pad-drums-background-color);
+  }
+  50% {
+    background-color: var(--pad-resting-background-color);
+  }
+  100% {
+    background-color: var(--pad-drums-background-color);
+  }
+}
+
+@keyframes bassAnim {
+  0% {
+    background-color: var(--pad-resting-background-color);
+  }
+  25% {
+    background-color: var(--pad-bass-background-color);
+  }
+  50% {
+    background-color: var(--pad-resting-background-color);
+  }
+  100% {
+    background-color: var(--pad-bass-background-color);
+  }
+}
+
+@keyframes chordsAnim {
+  0% {
+    background-color: var(--pad-resting-background-color);
+  }
+  25% {
+    background-color: var(--pad-chords-background-color);
+  }
+  50% {
+    background-color: var(--pad-resting-background-color);
+  }
+  100% {
+    background-color: var(--pad-chords-background-color);
+  }
+}
+
+@keyframes melodyAnim {
+  0% {
+    background-color: var(--pad-resting-background-color);
+  }
+  25% {
+    background-color: var(--pad-melody-background-color);
+  }
+  50% {
+    background-color: var(--pad-resting-background-color);
+  }
+  100% {
+    background-color: var(--pad-melody-background-color);
+  }
 }

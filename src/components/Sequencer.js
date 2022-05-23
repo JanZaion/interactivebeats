@@ -1,6 +1,6 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useEffect } from 'react';
-import * as Tone from 'tone';
+import * as Tone from 'tone'; //maybe only import individual methods
 import { BPM, numOfPads, groupParams } from '../constants/fixedParams';
 
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -9,7 +9,7 @@ const createLoops = (group, numOfPads, measure) => {
   return numOfPads.map(
     (id) =>
       new Tone.Loop(() => {
-        console.log(group, id);
+        // console.log(group, id);
       }, measure)
   );
 };
@@ -37,6 +37,13 @@ const Sequencer = () => {
     chords: [false, false, false, false],
   });
 
+  const [prevPlay, setPrevPlay] = useState({
+    drums: [false, false, false, false],
+    bass: [false, false, false, false],
+    melody: [false, false, false, false],
+    chords: [false, false, false, false],
+  });
+
   const [transportRunning, setTransportRunning] = useState(false);
 
   useEffect(() => {
@@ -48,6 +55,7 @@ const Sequencer = () => {
     const trackPlaying = play[group].indexOf(true);
     trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, groupParams[group].measure);
 
+    setPrevPlay({ ...play });
     const updatedGroup = [false, false, false, false];
     updatedGroup[id] = !play[group][id];
     const updatedPlay = { ...play, [group]: updatedGroup };
@@ -64,7 +72,13 @@ const Sequencer = () => {
     <main className="appContainer">
       <div className="sequencerBox">
         {Object.keys(play).map((group, index) => (
-          <InstrumentGroup key={index} group={group} player={player} groupStates={play[group]} />
+          <InstrumentGroup
+            key={index}
+            group={group}
+            player={player}
+            prevPlayGroup={prevPlay[group]}
+            playGroup={play[group]}
+          />
         ))}
       </div>
       {/* clean these when done */}
