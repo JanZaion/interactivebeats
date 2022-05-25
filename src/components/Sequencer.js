@@ -2,24 +2,28 @@ import InstrumentGroup from './InstrumentGroup';
 import { useState, useEffect } from 'react';
 import * as Tone from 'tone'; //maybe only import individual methods
 import { BPM, numOfPads, groupParams } from '../constants/fixedParams';
+import c1 from '../tracks/Chord_1.mp3';
+import c2 from '../tracks/Chord_2.mp3';
+import c3 from '../tracks/Chord_3.mp3';
 
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-const createLoops = (group, numOfPads, measure) => {
-  return numOfPads.map(
-    (id) =>
-      new Tone.Loop(() => {
-        console.log(group, id);
-      }, measure)
-  );
-};
+const placeholderTracks = [
+  new Tone.Player(c1).toDestination(),
+  new Tone.Player(c2).toDestination(),
+  new Tone.Player(c3).toDestination(),
+  new Tone.Player(c3).toDestination(),
+];
+
+const createLoops = (numOfPads, players, measure) =>
+  numOfPads.map((p, i) => new Tone.Loop(() => players[i].start(), measure));
 
 //refac to make programmaticaly
 const loops = {
-  drums: createLoops('drums', [...numOfPads], groupParams.drums.measure),
-  bass: createLoops('bass', [...numOfPads], groupParams.bass.measure),
-  melody: createLoops('melody', [...numOfPads], groupParams.melody.measure),
-  chords: createLoops('chords', [...numOfPads], groupParams.chords.measure),
+  drums: createLoops(numOfPads, placeholderTracks, groupParams.drums.measure),
+  bass: createLoops(numOfPads, placeholderTracks, groupParams.bass.measure),
+  melody: createLoops(numOfPads, placeholderTracks, groupParams.melody.measure),
+  chords: createLoops(numOfPads, placeholderTracks, groupParams.chords.measure),
 };
 
 const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
@@ -45,7 +49,7 @@ const Sequencer = () => {
     transportRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
   }, [transportRunning]);
 
-  const player = (group, id, groupParams) => {
+  const playLoop = (group, id, groupParams) => {
     Tone.start(); //ctx keeps saying suspended for some reason. Hopefuly not a problem
     const trackPlaying = play[group].indexOf(true);
     trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, groupParams[group].measure);
@@ -70,7 +74,7 @@ const Sequencer = () => {
           <InstrumentGroup
             key={index}
             group={group}
-            player={player}
+            playLoop={playLoop}
             prevPlayGroup={prevPlay[group]}
             playGroup={play[group]}
           />

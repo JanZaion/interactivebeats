@@ -14,11 +14,11 @@ const pickAnimation = (playPad, prevPlayPad, group, groupParams) => {
     return { animation: `${group}StopAnim ${animationSeconds}s`, background: `` };
 };
 
-const Pad = ({ player, id, group, playPad, prevPlayPad }) => {
+const Pad = ({ playLoop, id, group, playPad, prevPlayPad }) => {
   const { animation, background } = pickAnimation(playPad, prevPlayPad, group, groupParams);
 
   return (
-    <button className="pad" onClick={() => player(group, id, groupParams)} style={{ animation, background }}>
+    <button className="pad" onClick={() => playLoop(group, id, groupParams)} style={{ animation, background }}>
       <div className={playPad ? 'square' : 'triangle'} />
     </button>
   );

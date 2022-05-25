@@ -1,4 +1,4 @@
-export const BPM = 20;
+export const BPM = 120;
 
 export const numOfPads = [0, 1, 2, 3];
 
