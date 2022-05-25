@@ -9,7 +9,7 @@ const createLoops = (group, numOfPads, measure) => {
   return numOfPads.map(
     (id) =>
       new Tone.Loop(() => {
-        // console.log(group, id);
+        console.log(group, id);
       }, measure)
   );
 };
@@ -30,20 +30,15 @@ const stopLoop = (loops, id, group, stopMeasure) => loops[group][id].stop(stopMe
 Tone.Transport.bpm.value = BPM;
 
 const Sequencer = () => {
-  const [play, setPlay] = useState({
+  const initialPlay = {
     drums: [false, false, false, false],
     bass: [false, false, false, false],
     melody: [false, false, false, false],
     chords: [false, false, false, false],
-  });
+  };
 
-  const [prevPlay, setPrevPlay] = useState({
-    drums: [false, false, false, false],
-    bass: [false, false, false, false],
-    melody: [false, false, false, false],
-    chords: [false, false, false, false],
-  });
-
+  const [play, setPlay] = useState({ ...initialPlay });
+  const [prevPlay, setPrevPlay] = useState({ ...initialPlay });
   const [transportRunning, setTransportRunning] = useState(false);
 
   useEffect(() => {
@@ -71,7 +66,7 @@ const Sequencer = () => {
   return (
     <main className="appContainer">
       <div className="sequencerBox">
-        {Object.keys(play).map((group, index) => (
+        {Object.keys(initialPlay).map((group, index) => (
           <InstrumentGroup
             key={index}
             group={group}

@@ -2,13 +2,16 @@ import { groupParams } from '../constants/fixedParams';
 import * as Tone from 'tone'; //maybe only import individual methods
 
 const pickAnimation = (playPad, prevPlayPad, group, groupParams) => {
-  const animationTime = '1s';
+  const measureInSeconds = Tone.Time(groupParams[group].measure).toSeconds();
+  const transportPositionRemainder = Tone.Transport.seconds % measureInSeconds;
+  const animationSeconds = measureInSeconds - transportPositionRemainder;
+
   if (playPad === false && prevPlayPad === false) return { animation: ``, background: `` };
   if (playPad === true && prevPlayPad === true) return { animation: ``, background: `${groupParams[group].color}` };
   if (playPad === true && prevPlayPad === false)
-    return { animation: `${group}StartAnim ${animationTime}`, background: `${groupParams[group].color}` };
+    return { animation: `${group}StartAnim ${animationSeconds}s`, background: `${groupParams[group].color}` };
   if (playPad === false && prevPlayPad === true)
-    return { animation: `${group}StopAnim ${animationTime}`, background: `` };
+    return { animation: `${group}StopAnim ${animationSeconds}s`, background: `` };
 };
 
 const Pad = ({ player, id, group, playPad, prevPlayPad }) => {
