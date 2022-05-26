@@ -1,18 +1,52 @@
+// const ctx = new (window.AudioContext || window.webkitAudioContext)();
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useEffect } from 'react';
 import * as Tone from 'tone'; //maybe only import individual methods
 import { BPM, numOfPads, groupParams } from '../constants/fixedParams';
-import c1 from '../tracks/Chord_1.mp3';
-import c2 from '../tracks/Chord_2.mp3';
-import c3 from '../tracks/Chord_3.mp3';
 
-const ctx = new (window.AudioContext || window.webkitAudioContext)();
+import drums_1 from '../tracks/drums_1.mp3';
+import drums_2 from '../tracks/drums_2.mp3';
+import drums_3 from '../tracks/drums_3.mp3';
+import drums_4 from '../tracks/drums_4.mp3';
+import bass_1 from '../tracks/bass_1.mp3';
+import bass_2 from '../tracks/bass_2.mp3';
+import bass_3 from '../tracks/bass_3.mp3';
+import bass_4 from '../tracks/bass_4.mp3';
+import melody_1 from '../tracks/melody_1.mp3';
+import melody_2 from '../tracks/melody_2.mp3';
+import melody_3 from '../tracks/melody_3.mp3';
+import melody_4 from '../tracks/melody_4.mp3';
+import chords_1 from '../tracks/chords_1.mp3';
+import chords_2 from '../tracks/chords_2.mp3';
+import chords_3 from '../tracks/chords_3.mp3';
+import chords_4 from '../tracks/chords_4.mp3';
 
-const placeholderTracks = [
-  new Tone.Player(c1).toDestination(),
-  new Tone.Player(c2).toDestination(),
-  new Tone.Player(c3).toDestination(),
-  new Tone.Player(c3).toDestination(),
+const drumTracks = [
+  new Tone.Player(drums_1).toDestination(),
+  new Tone.Player(drums_2).toDestination(),
+  new Tone.Player(drums_3).toDestination(),
+  new Tone.Player(drums_4).toDestination(),
+];
+
+const melodyTracks = [
+  new Tone.Player(melody_1).toDestination(),
+  new Tone.Player(melody_2).toDestination(),
+  new Tone.Player(melody_3).toDestination(),
+  new Tone.Player(melody_4).toDestination(),
+];
+
+const chordTracks = [
+  new Tone.Player(chords_1).toDestination(),
+  new Tone.Player(chords_2).toDestination(),
+  new Tone.Player(chords_3).toDestination(),
+  new Tone.Player(chords_4).toDestination(),
+];
+
+const bassTracks = [
+  new Tone.Player(bass_1).toDestination(),
+  new Tone.Player(bass_2).toDestination(),
+  new Tone.Player(bass_3).toDestination(),
+  new Tone.Player(bass_4).toDestination(),
 ];
 
 const createLoops = (numOfPads, players, measure) =>
@@ -20,10 +54,10 @@ const createLoops = (numOfPads, players, measure) =>
 
 //refac to make programmaticaly
 const loops = {
-  drums: createLoops(numOfPads, placeholderTracks, groupParams.drums.measure),
-  bass: createLoops(numOfPads, placeholderTracks, groupParams.bass.measure),
-  melody: createLoops(numOfPads, placeholderTracks, groupParams.melody.measure),
-  chords: createLoops(numOfPads, placeholderTracks, groupParams.chords.measure),
+  drums: createLoops(numOfPads, drumTracks, groupParams.drums.measure),
+  bass: createLoops(numOfPads, bassTracks, groupParams.bass.measure),
+  melody: createLoops(numOfPads, melodyTracks, groupParams.melody.measure),
+  chords: createLoops(numOfPads, chordTracks, groupParams.chords.measure),
 };
 
 const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
