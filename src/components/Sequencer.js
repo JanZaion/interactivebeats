@@ -21,6 +21,12 @@ import chords_2 from '../tracks/chords_2.mp3';
 import chords_3 from '../tracks/chords_3.mp3';
 import chords_4 from '../tracks/chords_4.mp3';
 
+/*how to solve shit sounding looping?
+1) not by different looping methods, like player.loop
+2) prly by making 2 loops follow each other, coz when switching it does not sound shitty
+some errors about loops following each other and start time must be strictly greater or whatever. Look into it
+*/
+
 const drumTracks = [
   new Tone.Player(drums_1).toDestination(),
   new Tone.Player(drums_2).toDestination(),
@@ -98,6 +104,7 @@ const Sequencer = () => {
     const { drums, bass, chords, melody } = updatedPlay;
     setTransportRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
 
+    //add start time eval here. If no other thing playing, then it should start right away, not after the measure
     trackPlaying !== id && startLoop(loops, id, group, groupParams[group].measure);
   };
 
