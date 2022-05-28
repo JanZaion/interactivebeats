@@ -22,9 +22,7 @@ import chords_3 from '../tracks/chords_3.mp3';
 import chords_4 from '../tracks/chords_4.mp3';
 
 /*how to solve shit sounding looping?
-1) not by different looping methods, like player.loop
-2) prly by making 2 loops follow each other, coz when switching it does not sound shitty
-some errors about loops following each other and start time must be strictly greater or whatever. Look into it
+Tone.Transport.scheduleRepeat((time) => Player.start(time).stop(time + 4), 4);
 */
 
 const drumTracks = [
@@ -90,7 +88,6 @@ const Sequencer = () => {
   }, [transportRunning]);
 
   const playLoop = (group, id, groupParams) => {
-    Tone.start(); //ctx keeps saying suspended for some reason. Hopefuly not a problem
     const trackPlaying = play[group].indexOf(true);
     trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, groupParams[group].measure);
 
@@ -125,6 +122,14 @@ const Sequencer = () => {
       <div>{JSON.stringify(play)}</div>
       <br />
       <div>{`isplaying: ${transportRunning}`}</div>
+      <button
+        onClick={() => {
+          Tone.start();
+          Tone.Transport.start();
+        }}
+      >
+        start Tone
+      </button>
     </main>
   );
 };
