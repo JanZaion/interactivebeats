@@ -81,11 +81,11 @@ const Sequencer = () => {
 
   const [play, setPlay] = useState({ ...initialPlay });
   const [prevPlay, setPrevPlay] = useState({ ...initialPlay });
-  const [transportRunning, setTransportRunning] = useState(false);
+  const [transportIsRunning, setTransportIsRunning] = useState(false);
 
   useEffect(() => {
-    transportRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
-  }, [transportRunning]);
+    transportIsRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
+  }, [transportIsRunning]);
 
   const playLoop = (group, id, groupParams) => {
     const trackPlaying = play[group].indexOf(true);
@@ -99,9 +99,9 @@ const Sequencer = () => {
 
     //maybe SRP this
     const { drums, bass, chords, melody } = updatedPlay;
-    setTransportRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
+    setTransportIsRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
 
-    const startMeasure = transportRunning ? groupParams[group].measure : 0;
+    const startMeasure = transportIsRunning ? groupParams[group].measure : 0;
     trackPlaying !== id && startLoop(loops, id, group, startMeasure);
   };
 
@@ -121,7 +121,7 @@ const Sequencer = () => {
       {/* clean these when done */}
       <div>{JSON.stringify(play)}</div>
       <br />
-      <div>{`isplaying: ${transportRunning}`}</div>
+      <div>{`isplaying: ${transportIsRunning}`}</div>
       <button onClick={() => Tone.start()}>start Tone</button>
     </main>
   );

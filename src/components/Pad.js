@@ -1,9 +1,9 @@
 import { groupParams } from '../constants/fixedParams';
-import * as Tone from 'tone'; //maybe only import individual methods
+import { Transport, Time } from 'tone'; //maybe only import individual methods
 
 const pickAnimation = (playPad, prevPlayPad, group, groupParams) => {
-  const measureInSeconds = Tone.Time(groupParams[group].measure).toSeconds();
-  const transportPositionRemainder = Tone.Transport.seconds % measureInSeconds;
+  const measureInSeconds = Time(Transport.seconds === 0 ? 0 : groupParams[group].measure).toSeconds();
+  const transportPositionRemainder = Transport.seconds % measureInSeconds;
   const animationSeconds = measureInSeconds - transportPositionRemainder;
 
   if (playPad === false && prevPlayPad === false) return { animation: ``, background: `` };
