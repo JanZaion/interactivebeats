@@ -54,7 +54,7 @@ const bassTracks = [
 ];
 
 const createLoops = (numOfPads, players, measure) =>
-  numOfPads.map((p, i) => new Tone.Loop(() => players[i].start(), measure));
+  numOfPads.map((p) => new Tone.Loop((time) => players[p].start(time), measure));
 
 //refac to make programmaticaly
 const loops = {
@@ -122,14 +122,7 @@ const Sequencer = () => {
       <div>{JSON.stringify(play)}</div>
       <br />
       <div>{`isplaying: ${transportRunning}`}</div>
-      <button
-        onClick={() => {
-          Tone.start();
-          Tone.Transport.start();
-        }}
-      >
-        start Tone
-      </button>
+      <button onClick={() => Tone.start()}>start Tone</button>
     </main>
   );
 };
