@@ -66,7 +66,7 @@ const loops = {
 
 const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
 
-const stopLoop = (loops, id, group, stopMeasure) => loops[group][id].stop(stopMeasure);
+const stopLoop = (loops, id, group) => loops[group][id].cancel();
 
 //This should stay here, the stuff above should be moved to a different file
 Tone.Transport.bpm.value = BPM;
@@ -101,8 +101,8 @@ const Sequencer = () => {
     const { drums, bass, chords, melody } = updatedPlay;
     setTransportRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
 
-    //add start time eval here. If no other thing playing, then it should start right away, not after the measure
-    trackPlaying !== id && startLoop(loops, id, group, groupParams[group].measure);
+    const startMeasure = transportRunning ? groupParams[group].measure : 0;
+    trackPlaying !== id && startLoop(loops, id, group, startMeasure);
   };
 
   return (
