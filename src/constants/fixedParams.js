@@ -1,5 +1,7 @@
 export const BPM = 120;
 
+export const tick = '1n';
+
 export const numOfPads = [0, 1, 2, 3];
 
 export const groupParams = {
