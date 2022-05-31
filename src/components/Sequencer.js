@@ -68,9 +68,17 @@ const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(sta
 
 const stopLoop = (loops, id, group) => loops[group][id].cancel();
 
-const switchLoops = (queuedLoops, activeLoops) => {
+const switchLoops = (queuedLoops, activeLoops, loops, group) => {
   if (JSON.stringify(queuedLoops) === JSON.stringify(activeLoops)) return;
-  console.log(activeLoops, queuedLoops);
+
+  const stopLoop = activeLoops.indexOf(true);
+  stopLoop !== -1 && loops[group][stopLoop].stop();
+
+  const startLoop = queuedLoops.indexOf(true);
+  startLoop !== -1 && loops[group][startLoop].start();
+  //stop loop
+  //stop player on time
+  //start new loop
 };
 
 //This should stay here, the stuff above should be moved to a different file
@@ -85,12 +93,19 @@ const Sequencer = () => {
   };
 
   const [activeLoops, setActiveLoops] = useState({ ...initialState });
+  const activeLoopsRef = useRef({ ...initialState });
   const [queuedLoops, setQueuedLoops] = useState({ ...initialState });
   const queuedLoopsRef = useRef({ ...initialState });
   const [transportIsRunning, setTransportIsRunning] = useState(false);
 
   const Ticker = new Tone.Loop(() => {
-    setActiveLoops(queuedLoopsRef.current);
+    for (const group of Object.keys(queuedLoopsRef.current))
+      switchLoops(queuedLoopsRef.current[group], activeLoopsRef.current[group], loops, group);
+
+    setActiveLoops({ ...queuedLoopsRef.current });
+    activeLoopsRef.current = { ...queuedLoopsRef.current };
+
+    //handle transport here, prly via ref and useffect again. Or maybe just stop it right away
 
     // console.log(queuedLoops.drums);
     // setCount((prevState) => prevState + 1);
