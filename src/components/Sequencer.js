@@ -64,18 +64,14 @@ const loops = {
   chords: createLoops(numOfPads, chordTracks, groupParams.chords.measure),
 };
 
-const startLoop = (loops, id, group, startMeasure) => loops[group][id].start(startMeasure);
-
-const stopLoop = (loops, id, group) => loops[group][id].cancel();
-
-const switchLoops = (queuedLoops, activeLoops, loops, group) => {
+const switchLoops = (queuedLoops, activeLoops, loops, group, time) => {
   if (JSON.stringify(queuedLoops) === JSON.stringify(activeLoops)) return;
 
   const stopLoopID = activeLoops.indexOf(true);
-  stopLoopID !== -1 && loops[group][stopLoopID].stop();
+  stopLoopID !== -1 && loops[group][stopLoopID].stop().cancel();
 
   const startLoopID = queuedLoops.indexOf(true);
-  startLoopID !== -1 && loops[group][startLoopID].start();
+  startLoopID !== -1 && loops[group][startLoopID].start(time);
   //stop loop
   //stop player on time
   //start new loop
@@ -98,9 +94,9 @@ const Sequencer = () => {
   const queuedLoopsRef = useRef({ ...initialState });
   const [transportIsRunning, setTransportIsRunning] = useState(false);
 
-  const Ticker = new Tone.Loop(() => {
+  const Ticker = new Tone.Loop((time) => {
     for (const group of Object.keys(queuedLoopsRef.current))
-      switchLoops(queuedLoopsRef.current[group], activeLoopsRef.current[group], loops, group);
+      switchLoops(queuedLoopsRef.current[group], activeLoopsRef.current[group], loops, group, time);
 
     setActiveLoops({ ...queuedLoopsRef.current });
     activeLoopsRef.current = { ...queuedLoopsRef.current };
