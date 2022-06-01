@@ -71,11 +71,11 @@ const stopLoop = (loops, id, group) => loops[group][id].cancel();
 const switchLoops = (queuedLoops, activeLoops, loops, group) => {
   if (JSON.stringify(queuedLoops) === JSON.stringify(activeLoops)) return;
 
-  const stopLoop = activeLoops.indexOf(true);
-  stopLoop !== -1 && loops[group][stopLoop].stop();
+  const stopLoopID = activeLoops.indexOf(true);
+  stopLoopID !== -1 && loops[group][stopLoopID].stop();
 
-  const startLoop = queuedLoops.indexOf(true);
-  startLoop !== -1 && loops[group][startLoop].start();
+  const startLoopID = queuedLoops.indexOf(true);
+  startLoopID !== -1 && loops[group][startLoopID].start();
   //stop loop
   //stop player on time
   //start new loop
