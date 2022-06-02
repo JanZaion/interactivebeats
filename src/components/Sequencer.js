@@ -1,8 +1,8 @@
-// const ctx = new (window.AudioContext || window.webkitAudioContext)();
 import InstrumentGroup from './InstrumentGroup';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import * as Tone from 'tone'; //maybe only import individual methods
-import { BPM, numOfPads, groupParams, tick } from '../constants/fixedParams';
+
+import { BPM, tick } from '../constants/fixedParams';
 
 import drums_1 from '../tracks/drums_1.mp3';
 import drums_2 from '../tracks/drums_2.mp3';
@@ -56,74 +56,64 @@ const switchLoops = (queuedLoops, activeLoops, loops, time) => {
 };
 
 const Sequencer = () => {
-  const initialState = {
+  const playPadsOnInit = {
     drums: [false, false, false, false],
     bass: [false, false, false, false],
     melody: [false, false, false, false],
     chords: [false, false, false, false],
   };
 
-  const [activeLoops, setActiveLoops] = useState({ ...initialState });
-  const activeLoopsRef = useRef({ ...initialState });
-  const [queuedLoops, setQueuedLoops] = useState({ ...initialState });
-  const queuedLoopsRef = useRef({ ...initialState });
-  const [transportIsRunning, setTransportIsRunning] = useState(false);
+  const [activeLoops, setActiveLoops] = useState({ ...playPadsOnInit });
+  const activeLoopsRef = useRef({ ...playPadsOnInit });
+  const [queuedLoops, setQueuedLoops] = useState({ ...playPadsOnInit });
+  const queuedLoopsRef = useRef({ ...playPadsOnInit });
 
   const Ticker = new Tone.Loop((time) => {
-    switchLoops(queuedLoopsRef.current, activeLoopsRef.current, loops, time);
+    const qls = queuedLoopsRef.current;
+    switchLoops(qls, activeLoopsRef.current, loops, time);
 
-    setActiveLoops({ ...queuedLoopsRef.current });
-    activeLoopsRef.current = { ...queuedLoopsRef.current };
+    setActiveLoops({ ...qls });
+    activeLoopsRef.current = { ...qls };
 
-    const { drums, bass, chords, melody } = queuedLoopsRef.current;
-    setTransportIsRunning([...drums, ...bass, ...chords, ...melody].some((isLoopScheduled) => isLoopScheduled));
+    const willTransportStop = ![...qls.drums, ...qls.bass, ...qls.chords, ...qls.melody].some((isQued) => isQued);
+    if (willTransportStop) Tone.Transport.stop().position = 0;
   }, tick);
 
-  useEffect(() => {
-    transportIsRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
-  }, [transportIsRunning]);
+  const startOnFirstClick = () => {
+    if (Tone.Transport.state === 'started') return;
+    Tone.start();
+    Ticker.start();
+    Tone.Transport.start();
+  };
 
-  const playLoop = (group, id, groupParams) => {
-    Tone.Transport.state !== 'started' && Tone.start(); //Abstract with something
-    Tone.Transport.state !== 'started' && Ticker.start();
-    Tone.Transport.state !== 'started' && Tone.Transport.start(); //abstract with useEffect check
-
+  const queLoopsOnClick = (group, id) => {
     const updatedGroup = [false, false, false, false];
     updatedGroup[id] = !queuedLoops[group][id];
     setQueuedLoops({ ...queuedLoops, [group]: updatedGroup });
     queuedLoopsRef.current = { ...queuedLoops, [group]: updatedGroup };
+  };
 
-    // const trackPlaying = play[group].indexOf(true);
-    // trackPlaying !== -1 && stopLoop(loops, trackPlaying, group, groupParams[group].measure);
-    // setPrevPlay({ ...play });
-    // const updatedGroup = [false, false, false, false];
-    // updatedGroup[id] = !play[group][id];
-    // const updatedPlay = { ...play, [group]: updatedGroup };
-    // setPlay(updatedPlay);
-    // const { drums, bass, chords, melody } = updatedPlay;
-    // setTransportIsRunning([...drums, ...bass, ...chords, ...melody].some((e) => e));
-    // const startMeasure = transportIsRunning ? groupParams[group].measure : 0;
-    // trackPlaying !== id && startLoop(loops, id, group, startMeasure);
+  const handlePadClick = (group, id) => {
+    startOnFirstClick();
+    queLoopsOnClick(group, id);
   };
 
   return (
     <main className="appContainer">
       <div className="sequencerBox">
-        {Object.keys(initialState).map((group, index) => (
+        {Object.keys(playPadsOnInit).map((group, index) => (
           <InstrumentGroup
             key={index}
             group={group}
-            playLoop={playLoop}
-            prevPlayGroup={queuedLoopsRef.current[group]}
-            playGroup={activeLoops[group]}
+            handlePadClick={handlePadClick}
+            queuedLoopsGroup={queuedLoopsRef.current[group]}
+            activeLoopsGroup={activeLoops[group]}
           />
         ))}
       </div>
       {/* clean these when done */}
       <div>{JSON.stringify(queuedLoops)}</div>
       <div>{JSON.stringify(activeLoops)}</div>
-      <br />
-      <div>{`isplaying: ${transportIsRunning}`}</div>
     </main>
   );
 };

@@ -1,17 +1,17 @@
 import Pad from './Pad';
 
-const InstrumentGroup = ({ group, playLoop, prevPlayGroup, playGroup }) => {
+const InstrumentGroup = ({ group, handlePadClick, queuedLoopsGroup, activeLoopsGroup }) => {
   return (
     <div className="instrumentGroup">
       <div className="instrumentGroupName">{group}</div>
-      {playGroup.map((state, index) => (
+      {activeLoopsGroup.map((play, index) => (
         <Pad
           key={index}
           id={index}
           group={group}
-          playLoop={playLoop}
-          playPad={state}
-          prevPlayPad={prevPlayGroup[index]}
+          handlePadClick={handlePadClick}
+          playPad={play}
+          prevPlayPad={queuedLoopsGroup[index]}
         />
       ))}
     </div>
