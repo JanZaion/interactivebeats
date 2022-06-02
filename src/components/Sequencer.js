@@ -34,7 +34,7 @@ const Sequencer = () => {
   const [queuedLoops, setQueuedLoops] = useState({ ...playPadsOnInit });
   const queuedLoopsRef = useRef({ ...playPadsOnInit });
 
-  const Ticker = new Loop((time) => {
+  const Clock = new Loop((time) => {
     const qls = queuedLoopsRef.current;
     switchLoops(qls, activeLoopsRef.current, loops, time);
 
@@ -48,7 +48,7 @@ const Sequencer = () => {
   const startOnFirstClick = () => {
     if (Transport.state === 'started') return;
     Tone.start();
-    Ticker.start();
+    Clock.start();
     Transport.start();
   };
 

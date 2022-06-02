@@ -19,9 +19,9 @@ import chords_4 from '../tracks/chords_4.mp3';
 
 const makeLoops = (tracks) => {
   const loops = tracks.map((track) => {
-    const loop = new Player(track).toDestination();
-    loop.loop = true;
-    return loop;
+    const Loop = new Player(track).toDestination();
+    Loop.loop = true;
+    return Loop;
   });
 
   return loops;
