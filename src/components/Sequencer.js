@@ -38,18 +38,22 @@ const loops = {
   chords: makeLoops([chords_1, chords_2, chords_3, chords_4]),
 };
 
-const switchLoops = (queuedLoops, activeLoops, loops, group, time) => {
-  if (JSON.stringify(queuedLoops) === JSON.stringify(activeLoops)) return;
-
-  const stopLoopID = activeLoops.indexOf(true);
-  stopLoopID !== -1 && loops[group][stopLoopID].stop();
-
-  const startLoopID = queuedLoops.indexOf(true);
-  startLoopID !== -1 && loops[group][startLoopID].start(time);
-};
-
 //This should stay here, the stuff above should be moved to a different file
 Tone.Transport.bpm.value = BPM;
+
+const switchLoops = (queuedLoops, activeLoops, loops, time) => {
+  Object.keys(queuedLoops).forEach((group) => {
+    const queudLoopsGroup = queuedLoops[group];
+    const activeLoopsGroup = activeLoops[group];
+    if (JSON.stringify(queudLoopsGroup) === JSON.stringify(activeLoopsGroup)) return;
+
+    const stopLoopID = activeLoopsGroup.indexOf(true);
+    stopLoopID !== -1 && loops[group][stopLoopID].stop();
+
+    const startLoopID = queudLoopsGroup.indexOf(true);
+    startLoopID !== -1 && loops[group][startLoopID].start(time);
+  });
+};
 
 const Sequencer = () => {
   const initialState = {
@@ -66,28 +70,23 @@ const Sequencer = () => {
   const [transportIsRunning, setTransportIsRunning] = useState(false);
 
   const Ticker = new Tone.Loop((time) => {
-    for (const group of Object.keys(queuedLoopsRef.current))
-      switchLoops(queuedLoopsRef.current[group], activeLoopsRef.current[group], loops, group, time);
+    switchLoops(queuedLoopsRef.current, activeLoopsRef.current, loops, time);
 
     setActiveLoops({ ...queuedLoopsRef.current });
     activeLoopsRef.current = { ...queuedLoopsRef.current };
 
-    //handle transport here, prly via ref and useffect again. Or maybe just stop it right away
-
-    // console.log(queuedLoops.drums);
-    // setCount((prevState) => prevState + 1);
+    const { drums, bass, chords, melody } = queuedLoopsRef.current;
+    setTransportIsRunning([...drums, ...bass, ...chords, ...melody].some((isLoopScheduled) => isLoopScheduled));
   }, tick);
 
-  // useEffect(() => {}, [activeLoops]);
-
-  // useEffect(() => {
-  //   transportIsRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
-  // }, [transportIsRunning]);
+  useEffect(() => {
+    transportIsRunning ? Tone.Transport.start() : (Tone.Transport.stop().position = 0);
+  }, [transportIsRunning]);
 
   const playLoop = (group, id, groupParams) => {
-    Tone.start(); //Abstract with something
+    Tone.Transport.state !== 'started' && Tone.start(); //Abstract with something
     Tone.Transport.state !== 'started' && Ticker.start();
-    Tone.Transport.start(); //abstract with useEffect check
+    Tone.Transport.state !== 'started' && Tone.Transport.start(); //abstract with useEffect check
 
     const updatedGroup = [false, false, false, false];
     updatedGroup[id] = !queuedLoops[group][id];
