@@ -21,60 +21,31 @@ import chords_2 from '../tracks/chords_2.mp3';
 import chords_3 from '../tracks/chords_3.mp3';
 import chords_4 from '../tracks/chords_4.mp3';
 
-/*how to solve shit sounding looping?
-Tone.Transport.scheduleRepeat((time) => Player.start(time).stop(time + 4), 4);
-*/
+const makeLoops = (tracks) => {
+  const loops = tracks.map((track) => {
+    const loop = new Tone.Player(track).toDestination();
+    loop.loop = true;
+    return loop;
+  });
 
-const drumTracks = [
-  new Tone.Player(drums_1).toDestination(),
-  new Tone.Player(drums_2).toDestination(),
-  new Tone.Player(drums_3).toDestination(),
-  new Tone.Player(drums_4).toDestination(),
-];
+  return loops;
+};
 
-const melodyTracks = [
-  new Tone.Player(melody_1).toDestination(),
-  new Tone.Player(melody_2).toDestination(),
-  new Tone.Player(melody_3).toDestination(),
-  new Tone.Player(melody_4).toDestination(),
-];
-
-const chordTracks = [
-  new Tone.Player(chords_1).toDestination(),
-  new Tone.Player(chords_2).toDestination(),
-  new Tone.Player(chords_3).toDestination(),
-  new Tone.Player(chords_4).toDestination(),
-];
-
-const bassTracks = [
-  new Tone.Player(bass_1).toDestination(),
-  new Tone.Player(bass_2).toDestination(),
-  new Tone.Player(bass_3).toDestination(),
-  new Tone.Player(bass_4).toDestination(),
-];
-
-const createLoops = (numOfPads, players, measure) =>
-  numOfPads.map((p) => new Tone.Loop((time) => players[p].start(time), measure));
-
-//refac to make programmaticaly
 const loops = {
-  drums: createLoops(numOfPads, drumTracks, groupParams.drums.measure),
-  bass: createLoops(numOfPads, bassTracks, groupParams.bass.measure),
-  melody: createLoops(numOfPads, melodyTracks, groupParams.melody.measure),
-  chords: createLoops(numOfPads, chordTracks, groupParams.chords.measure),
+  drums: makeLoops([drums_1, drums_2, drums_3, drums_4]),
+  bass: makeLoops([bass_1, bass_2, bass_3, bass_4]),
+  melody: makeLoops([melody_1, melody_2, melody_3, melody_4]),
+  chords: makeLoops([chords_1, chords_2, chords_3, chords_4]),
 };
 
 const switchLoops = (queuedLoops, activeLoops, loops, group, time) => {
   if (JSON.stringify(queuedLoops) === JSON.stringify(activeLoops)) return;
 
   const stopLoopID = activeLoops.indexOf(true);
-  stopLoopID !== -1 && loops[group][stopLoopID].stop().cancel();
+  stopLoopID !== -1 && loops[group][stopLoopID].stop();
 
   const startLoopID = queuedLoops.indexOf(true);
   startLoopID !== -1 && loops[group][startLoopID].start(time);
-  //stop loop
-  //stop player on time
-  //start new loop
 };
 
 //This should stay here, the stuff above should be moved to a different file
