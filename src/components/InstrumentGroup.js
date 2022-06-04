@@ -10,8 +10,8 @@ const InstrumentGroup = ({ group, groupName, handlePadClick, queuedLoopsGroup, a
           id={index}
           group={group}
           handlePadClick={handlePadClick}
-          playPad={play}
-          prevPlayPad={queuedLoopsGroup[index]}
+          activePad={play}
+          queuedPad={queuedLoopsGroup[index]}
         />
       ))}
     </div>
