@@ -28,8 +28,8 @@ const makeLoops = (tracks) => {
 };
 
 export const loops = {
-  drums: makeLoops([drums_1, drums_2, drums_3, drums_4]),
-  bass: makeLoops([bass_1, bass_2, bass_3, bass_4]),
-  melody: makeLoops([melody_1, melody_2, melody_3, melody_4]),
-  chords: makeLoops([chords_1, chords_2, chords_3, chords_4]),
+  group1: makeLoops([drums_1, drums_2, drums_3, drums_4]),
+  group2: makeLoops([bass_1, bass_2, bass_3, bass_4]),
+  group3: makeLoops([melody_1, melody_2, melody_3, melody_4]),
+  group4: makeLoops([chords_1, chords_2, chords_3, chords_4]),
 };

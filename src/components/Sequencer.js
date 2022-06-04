@@ -1,6 +1,6 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useRef } from 'react';
-import { BPM, tick } from '../constants/fixedParams';
+import { BPM, tick, groupParams } from '../constants/fixedParams';
 import { loops } from '../constants/loopsMetadata';
 import * as Tone from 'tone';
 const { Loop, Transport } = Tone;
@@ -23,10 +23,10 @@ const switchLoops = (queuedLoops, activeLoops, loops, time) => {
 
 const Sequencer = () => {
   const playPadsOnInit = {
-    drums: [false, false, false, false],
-    bass: [false, false, false, false],
-    melody: [false, false, false, false],
-    chords: [false, false, false, false],
+    group1: [false, false, false, false],
+    group2: [false, false, false, false],
+    group3: [false, false, false, false],
+    group4: [false, false, false, false],
   };
 
   const [activeLoops, setActiveLoops] = useState({ ...playPadsOnInit });
@@ -41,7 +41,7 @@ const Sequencer = () => {
     setActiveLoops({ ...qls });
     activeLoopsRef.current = { ...qls };
 
-    const willTransportStop = ![...qls.drums, ...qls.bass, ...qls.chords, ...qls.melody].some((isQued) => isQued);
+    const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
     if (willTransportStop) Transport.stop().position = 0;
   }, tick);
 
@@ -71,6 +71,7 @@ const Sequencer = () => {
           <InstrumentGroup
             key={index}
             group={group}
+            groupName={groupParams[group].name}
             handlePadClick={handlePadClick}
             queuedLoopsGroup={queuedLoopsRef.current[group]}
             activeLoopsGroup={activeLoops[group]}
