@@ -7,7 +7,7 @@ const { Loop, Transport } = Tone;
 
 Transport.bpm.value = BPM;
 
-const switchLoops = (queuedLoops, activeLoops, loops, time) => {
+const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   Object.keys(queuedLoops).forEach((group) => {
     const queudLoopsGroup = queuedLoops[group];
     const activeLoopsGroup = activeLoops[group];
@@ -36,7 +36,7 @@ const Sequencer = () => {
 
   const Clock = new Loop((time) => {
     const qls = queuedLoopsRef.current;
-    switchLoops(qls, activeLoopsRef.current, loops, time);
+    switchAudioLoops(qls, activeLoopsRef.current, loops, time);
 
     setActiveLoops({ ...qls });
     activeLoopsRef.current = { ...qls };
