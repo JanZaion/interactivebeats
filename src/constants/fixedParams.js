@@ -1,4 +1,4 @@
-export const BPM = 120;
+export const BPM = 125; //BPM must be identical to the BPM of tracks made
 
 export const tick = '1n';
 
