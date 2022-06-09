@@ -5,17 +5,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  background: #1a3046;
 }
 
 :root {
   --playbuttongap-grid-gap: 0.1rem;
   --pad-max-width-big-screen: 380px;
   --pad-max-width-small-screen: 100vw;
-  --pad-resting-background-color: lightgrey;
-  --pad-group1-background-color: yellow;
-  --pad-group2-background-color: blue;
-  --pad-group4-background-color: purple;
-  --pad-group3-background-color: green;
+  --pad-resting-background-color: #d5d5d5;
+  --pad-group1-background-color: #f6f47b;
+  --pad-group2-background-color: #192f95;
+  --pad-group3-background-color: #0a9c8f;
+  --pad-group4-background-color: #9b52aa;
 }
 
 header {
@@ -45,7 +46,6 @@ header {
 }
 
 .sequencerBox {
-  background-color: rgb(117, 151, 151);
   max-width: var(--pad-max-width-big-screen);
   margin-left: auto;
   margin-right: auto;
@@ -56,6 +56,7 @@ header {
 }
 
 .instrumentGroup {
+  color: white;
   display: grid;
   grid-template-rows: 2rem 1fr 1fr 1fr 1fr;
   grid-gap: var(--playbuttongap-grid-gap);
@@ -69,10 +70,15 @@ header {
 
 .pad {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 5px;
+  border-color: #1a3046;
   cursor: pointer;
   height: calc(var(--pad-max-width-big-screen) / 4);
   background: var(--pad-resting-background-color);
+}
+
+.pad:hover {
+  background: darkgray;
 }
 
 .triangle {
