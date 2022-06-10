@@ -96,7 +96,7 @@ header {
   background: rgb(255, 255, 255);
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 450px) {
   .sequencerBox {
     max-width: var(--pad-max-width-small-screen);
   }
