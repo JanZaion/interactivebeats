@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import { BPM, tick, groupParams } from '../constants/fixedParams';
 import { loops } from '../constants/loopsMetadata';
 import * as Tone from 'tone';
+
 const { Loop, Transport } = Tone;
 
 Transport.bpm.value = BPM;
@@ -65,20 +66,18 @@ const Sequencer = () => {
   };
 
   return (
-    <main className="appContainer">
-      <div className="sequencerBox">
-        {Object.keys(playPadsOnInit).map((group, index) => (
-          <InstrumentGroup
-            key={index}
-            group={group}
-            groupName={groupParams[group].name}
-            handlePadClick={handlePadClick}
-            queuedLoopsGroup={queuedLoopsRef.current[group]}
-            activeLoopsGroup={activeLoops[group]}
-          />
-        ))}
-      </div>
-    </main>
+    <div className="sequencerBox">
+      {Object.keys(playPadsOnInit).map((group, index) => (
+        <InstrumentGroup
+          key={index}
+          group={group}
+          groupName={groupParams[group].name}
+          handlePadClick={handlePadClick}
+          queuedLoopsGroup={queuedLoopsRef.current[group]}
+          activeLoopsGroup={activeLoops[group]}
+        />
+      ))}
+    </div>
   );
 };
 
