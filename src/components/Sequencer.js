@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import { BPM, tick, groupParams } from '../constants/fixedParams';
 import { loops } from '../constants/loopsMetadata';
 import * as Tone from 'tone';
-
 const { Loop, Transport } = Tone;
 
 Transport.bpm.value = BPM;

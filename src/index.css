@@ -13,10 +13,6 @@ body {
   --pad-max-width-big-screen: 380px;
   --pad-max-width-small-screen: 100vw;
   --pad-resting-background-color: #d5d5d5;
-  --pad-group1-background-color: #f6f47b;
-  --pad-group2-background-color: #192f95;
-  --pad-group3-background-color: #0a9c8f;
-  --pad-group4-background-color: #9b52aa;
   --pad-inner-shape-color: white;
   --p-text-color: white;
 }
