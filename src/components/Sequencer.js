@@ -14,7 +14,7 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
     if (JSON.stringify(queudLoopsGroup) === JSON.stringify(activeLoopsGroup)) return;
 
     const stopLoopID = activeLoopsGroup.indexOf(true);
-    stopLoopID !== -1 && loops[group][stopLoopID].stop();
+    stopLoopID !== -1 && loops[group][stopLoopID].stop(time);
 
     const startLoopID = queudLoopsGroup.indexOf(true);
     startLoopID !== -1 && loops[group][startLoopID].start(time);
