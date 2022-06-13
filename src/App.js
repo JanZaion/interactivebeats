@@ -11,7 +11,7 @@ Object.keys(groupParams).forEach((group) =>
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className="appContainer">
         <Intro />
         <Sequencer />
