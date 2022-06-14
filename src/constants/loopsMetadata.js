@@ -1,21 +1,21 @@
 import { Player } from 'tone';
 
-import drums_1 from '../tracks/drums_1.mp3';
-import drums_2 from '../tracks/drums_2.mp3';
-import drums_3 from '../tracks/drums_3.mp3';
-import drums_4 from '../tracks/drums_4.mp3';
-import bass_1 from '../tracks/bass_1.mp3';
-import bass_2 from '../tracks/bass_2.mp3';
-import bass_3 from '../tracks/bass_3.mp3';
-import bass_4 from '../tracks/bass_4.mp3';
-import melody_1 from '../tracks/melody_1.mp3';
-import melody_2 from '../tracks/melody_2.mp3';
-import melody_3 from '../tracks/melody_3.mp3';
-import melody_4 from '../tracks/melody_4.mp3';
-import chords_1 from '../tracks/chords_1.mp3';
-import chords_2 from '../tracks/chords_2.mp3';
-import chords_3 from '../tracks/chords_3.mp3';
-import chords_4 from '../tracks/chords_4.mp3';
+import drums_1 from '../tracks/drums_1.opus';
+import drums_2 from '../tracks/drums_2.opus';
+import drums_3 from '../tracks/drums_3.opus';
+import drums_4 from '../tracks/drums_4.opus';
+import bass_1 from '../tracks/bass_1.opus';
+import bass_2 from '../tracks/bass_2.opus';
+import bass_3 from '../tracks/bass_3.opus';
+import bass_4 from '../tracks/bass_4.opus';
+import melody_1 from '../tracks/melody_1.opus';
+import melody_2 from '../tracks/melody_2.opus';
+import melody_3 from '../tracks/melody_3.opus';
+import melody_4 from '../tracks/melody_4.opus';
+import chords_1 from '../tracks/chords_1.opus';
+import chords_2 from '../tracks/chords_2.opus';
+import chords_3 from '../tracks/chords_3.opus';
+import chords_4 from '../tracks/chords_4.opus';
 
 const makeLoops = (tracks) => {
   const loops = tracks.map((track) => {
