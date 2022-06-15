@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/bossequencer/static/css/main.1d623e4a.css",
-    "main.js": "/bossequencer/static/js/main.c2f944eb.js",
-    "static/media/melody_1.opus": "/bossequencer/static/media/melody_1.50ce16c188a208d4d46f.opus",
-    "static/media/bass_3.opus": "/bossequencer/static/media/bass_3.b0a82af3d429a993d9bf.opus",
-    "static/media/bass_4.opus": "/bossequencer/static/media/bass_4.c494a0dc672c838e7d30.opus",
-    "static/media/chords_1.opus": "/bossequencer/static/media/chords_1.f2676d628e93545fa3bf.opus",
-    "static/media/melody_2.opus": "/bossequencer/static/media/melody_2.3aec1b2a21accf0a6e0f.opus",
-    "static/media/chords_3.opus": "/bossequencer/static/media/chords_3.826eafa9a7788a46994d.opus",
-    "static/media/melody_4.opus": "/bossequencer/static/media/melody_4.0d4dda755944f5487412.opus",
-    "static/media/bass_2.opus": "/bossequencer/static/media/bass_2.c37ebd21fc2d6962a626.opus",
-    "static/media/drums_3.opus": "/bossequencer/static/media/drums_3.5a19390d3f1aa125e2f1.opus",
-    "static/media/bass_1.opus": "/bossequencer/static/media/bass_1.ce495b6385733603bca0.opus",
-    "static/media/chords_2.opus": "/bossequencer/static/media/chords_2.d95d815e689988d19d66.opus",
-    "static/media/chords_4.opus": "/bossequencer/static/media/chords_4.b383671f596d06171031.opus",
-    "static/media/melody_3.opus": "/bossequencer/static/media/melody_3.45d89dc10b6f4ece8e62.opus",
-    "static/media/drums_4.opus": "/bossequencer/static/media/drums_4.4c588e16562f003be3a9.opus",
-    "static/media/drums_1.opus": "/bossequencer/static/media/drums_1.c013234ba8a692457b93.opus",
-    "static/media/drums_2.opus": "/bossequencer/static/media/drums_2.69aa29a56f0f17077610.opus",
+    "main.css": "/bossequencer/static/css/main.5bdbe45e.css",
+    "main.js": "/bossequencer/static/js/main.5f8cd035.js",
+    "static/media/bass_3.opus": "/bossequencer/static/media/bass_3.5f41a021964a62dc5ce0.opus",
+    "static/media/bass_4.opus": "/bossequencer/static/media/bass_4.eae95e2fc17b51ef169f.opus",
+    "static/media/melody_1.opus": "/bossequencer/static/media/melody_1.099c5eaaf69280a86390.opus",
+    "static/media/chords_1.opus": "/bossequencer/static/media/chords_1.583e43a9fb5cb21fe691.opus",
+    "static/media/chords_3.opus": "/bossequencer/static/media/chords_3.a0138057b31811078bd9.opus",
+    "static/media/melody_2.opus": "/bossequencer/static/media/melody_2.720085342336bfe66b9e.opus",
+    "static/media/melody_4.opus": "/bossequencer/static/media/melody_4.80a2a47d164412ccd6e5.opus",
+    "static/media/bass_2.opus": "/bossequencer/static/media/bass_2.9c5bd89f94884886578e.opus",
+    "static/media/drums_3.opus": "/bossequencer/static/media/drums_3.b6cfd87b5c68cf373bb6.opus",
+    "static/media/bass_1.opus": "/bossequencer/static/media/bass_1.ea0301b927ea5bb081e0.opus",
+    "static/media/chords_2.opus": "/bossequencer/static/media/chords_2.d617601d1cd94a829ecf.opus",
+    "static/media/chords_4.opus": "/bossequencer/static/media/chords_4.5d3d237e6d56adbc0c03.opus",
+    "static/media/melody_3.opus": "/bossequencer/static/media/melody_3.d3ea5748692c47d40d53.opus",
+    "static/media/drums_4.opus": "/bossequencer/static/media/drums_4.cf004420c7a81272ede6.opus",
+    "static/media/drums_1.opus": "/bossequencer/static/media/drums_1.9776f952ffebf334d298.opus",
+    "static/media/drums_2.opus": "/bossequencer/static/media/drums_2.e11c96711213db56de5e.opus",
     "index.html": "/bossequencer/index.html",
-    "main.1d623e4a.css.map": "/bossequencer/static/css/main.1d623e4a.css.map",
-    "main.c2f944eb.js.map": "/bossequencer/static/js/main.c2f944eb.js.map"
+    "main.5bdbe45e.css.map": "/bossequencer/static/css/main.5bdbe45e.css.map",
+    "main.5f8cd035.js.map": "/bossequencer/static/js/main.5f8cd035.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d623e4a.css",
-    "static/js/main.c2f944eb.js"
+    "static/css/main.5bdbe45e.css",
+    "static/js/main.5f8cd035.js"
   ]
 }
