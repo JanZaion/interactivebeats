@@ -49,9 +49,10 @@ header {
   justify-content: center;
   align-items: center;
   height: 10vh;
+  padding: 0 4vw 0 4vw;
 }
 
-.intro > a {
+.githubLink {
   color: rgb(212, 135, 104);
 }
 
