@@ -1,7 +1,7 @@
 const Intro = () => {
   return (
     <div className="intro">
-      <p>Click a pad, it will be fun...</p>
+      <p>Click a pad, it will be fun</p>
     </div>
   );
 };
