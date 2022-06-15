@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/bossequencer/static/css/main.5bdbe45e.css",
-    "main.js": "/bossequencer/static/js/main.5f8cd035.js",
+    "main.css": "/bossequencer/static/css/main.d4289334.css",
+    "main.js": "/bossequencer/static/js/main.7fb51a00.js",
     "static/media/bass_3.opus": "/bossequencer/static/media/bass_3.5f41a021964a62dc5ce0.opus",
     "static/media/bass_4.opus": "/bossequencer/static/media/bass_4.eae95e2fc17b51ef169f.opus",
     "static/media/melody_1.opus": "/bossequencer/static/media/melody_1.099c5eaaf69280a86390.opus",
@@ -19,11 +19,11 @@
     "static/media/drums_1.opus": "/bossequencer/static/media/drums_1.9776f952ffebf334d298.opus",
     "static/media/drums_2.opus": "/bossequencer/static/media/drums_2.e11c96711213db56de5e.opus",
     "index.html": "/bossequencer/index.html",
-    "main.5bdbe45e.css.map": "/bossequencer/static/css/main.5bdbe45e.css.map",
-    "main.5f8cd035.js.map": "/bossequencer/static/js/main.5f8cd035.js.map"
+    "main.d4289334.css.map": "/bossequencer/static/css/main.d4289334.css.map",
+    "main.7fb51a00.js.map": "/bossequencer/static/js/main.7fb51a00.js.map"
   },
   "entrypoints": [
-    "static/css/main.5bdbe45e.css",
-    "static/js/main.5f8cd035.js"
+    "static/css/main.d4289334.css",
+    "static/js/main.7fb51a00.js"
   ]
 }
