@@ -51,6 +51,10 @@ header {
   height: 10vh;
 }
 
+.intro > a {
+  color: rgb(212, 135, 104);
+}
+
 .sequencerBox {
   max-width: var(--pad-max-width-big-screen);
   margin-left: auto;
