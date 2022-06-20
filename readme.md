@@ -10,6 +10,7 @@ Main dependencies of this project are React and Tone.js. React handles the gener
 
 - **Track fetching**: the app should be able to store more music loops and to populate the sequencer with different music loops on request
 - **Savable and sharable configuration**: once a set of loops is loaded, the configuration of the active pads should be sharable via URL or a similar method, ie bossequencer/trackName?1342
+- **Magic button**: on press of the magic button, the pads should start playing themselves according to a procedurally generated sequence
 - **Visualization**: some form of basic visualization, ie FFT
 
 ## Contribution
