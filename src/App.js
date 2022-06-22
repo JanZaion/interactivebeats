@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Sequencer from './components/Sequencer';
 import Intro from './components/Intro';
 import Outro from './components/Outro';
+import FT from './components/FT';
 import { groupParams } from './constants/fixedParams';
 
 //single source of truth for pad colors, once tracks are loadable, put it somwhere where they are being loaded
@@ -17,6 +18,7 @@ function App() {
         <Intro />
         <Sequencer />
         <Outro />
+        <FT />
       </main>
     </>
   );
