@@ -1,7 +1,8 @@
 import { useState, Suspense } from 'react';
+import WrapPlaceholder from './WrapPlaceholder';
 
 const TrackSelector = () => {
-  return <div>TrackSelector</div>;
+  return <WrapPlaceholder />;
 };
 
 export default TrackSelector;

@@ -1,5 +1,5 @@
 import Header from './components/Header';
-import Sequencer from './components/Sequencer';
+import TrackSelector from './components/TrackSelector';
 import Intro from './components/Intro';
 import Outro from './components/Outro';
 import FT from './components/FT';
@@ -16,7 +16,7 @@ function App() {
       {/* <Header /> */}
       <main className="appContainer">
         <Intro />
-        <Sequencer />
+        <TrackSelector />
         <Outro />
         <FT />
       </main>
