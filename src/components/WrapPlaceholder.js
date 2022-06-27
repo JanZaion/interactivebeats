@@ -38,6 +38,10 @@ const genre = 'phunk';
 // const size = 10mb???
 //variable data ends here
 
+Object.keys(groupParams).forEach((group) =>
+  document.documentElement.style.setProperty(`--pad-${group}-background-color`, groupParams[group].color)
+);
+
 const WrapPlaceholder = () => {
   return (
     <>

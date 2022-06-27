@@ -1,11 +1,7 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useRef } from 'react';
-import { BPM, tick, groupParams } from '../constants/fixedParams';
-import { loops } from '../constants/loopsMetadata';
 import * as Tone from 'tone';
 const { Loop, Transport } = Tone;
-
-Transport.bpm.value = BPM;
 
 const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   Object.keys(queuedLoops).forEach((group) => {
@@ -21,13 +17,15 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
-const Sequencer = () => {
+const Sequencer = ({ BPM, tick, groupParams, loops }) => {
   const playPadsOnInit = {
     group1: [false, false, false, false],
     group2: [false, false, false, false],
     group3: [false, false, false, false],
     group4: [false, false, false, false],
   };
+
+  Transport.bpm.value = BPM;
 
   const [activeLoops, setActiveLoops] = useState({ ...playPadsOnInit });
   const activeLoopsRef = useRef({ ...playPadsOnInit });
