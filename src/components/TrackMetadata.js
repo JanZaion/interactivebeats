@@ -1,8 +1,8 @@
 const TrackMetadata = ({ producer, genre }) => {
   return (
     <>
-      <h5>producer: {producer}</h5>
-      <h5>genre: {genre}</h5>
+      <p>producer: {producer}</p>
+      <p>genre: {genre}</p>
     </>
   );
 };
