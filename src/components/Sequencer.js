@@ -69,6 +69,7 @@ const Sequencer = ({ BPM, tick, groupParams, loops }) => {
           key={index}
           group={group}
           groupName={groupParams[group].name}
+          color={groupParams[group].color}
           handlePadClick={handlePadClick}
           queuedLoopsGroup={queuedLoopsRef.current[group]}
           activeLoopsGroup={activeLoops[group]}
