@@ -2,7 +2,6 @@ import Header from './components/Header';
 import TrackSelector from './components/TrackSelector';
 import Intro from './components/Intro';
 import Outro from './components/Outro';
-import FT from './components/FT';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
         <Intro />
         <TrackSelector />
         <Outro />
-        <FT />
       </main>
     </>
   );
