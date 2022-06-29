@@ -4,7 +4,7 @@ import TrackMetadata from './TrackMetadata';
 import { useState, useEffect } from 'react';
 
 const TrackWrapper = ({ track, players }) => {
-  const { groupParams, BPM, tick, producer, genre, folder } = track;
+  const { groupParams, BPM, producer, genre, folder } = track;
   const [areTracksLoaded, setAreTracksLoaded] = useState(false);
 
   Object.keys(groupParams).forEach((group) =>
@@ -22,7 +22,7 @@ const TrackWrapper = ({ track, players }) => {
   return (
     <>
       <TrackMetadata producer={producer} genre={genre} />
-      {areTracksLoaded ? <Sequencer BPM={BPM} tick={tick} groupParams={groupParams} players={players} /> : <Loading />}
+      {areTracksLoaded ? <Sequencer BPM={BPM} groupParams={groupParams} players={players} /> : <Loading />}
     </>
   );
 };

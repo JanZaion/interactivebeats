@@ -5,7 +5,6 @@ export const tracks = [
     genre: 'phunk',
     folder: 'phonk',
     BPM: 125,
-    tick: '1n',
     groupParams: {
       group1: { name: 'drums', color: '#f6f47b' },
       group2: { name: 'bass', color: '#192f95' },
@@ -19,7 +18,6 @@ export const tracks = [
     genre: 'phunk',
     folder: 'revPhonk',
     BPM: 125,
-    tick: '1n',
     groupParams: {
       group1: { name: 'you', color: 'pink' },
       group2: { name: 'are', color: 'purple' },

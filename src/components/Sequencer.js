@@ -17,7 +17,7 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
-const Sequencer = ({ BPM, tick, groupParams, players }) => {
+const Sequencer = ({ BPM, groupParams, players }) => {
   useEffect(() => {
     players.forEach((player) => player.stop());
     Transport.stop();
@@ -52,7 +52,7 @@ const Sequencer = ({ BPM, tick, groupParams, players }) => {
 
     const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
     if (willTransportStop) Transport.stop().position = 0;
-  }, tick);
+  }, '1n');
 
   const startOnFirstClick = () => {
     if (Transport.state === 'started') return;
