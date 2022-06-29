@@ -1,8 +1,9 @@
-import Header from './components/Header';
+// import Header from './components/Header';
 import TrackSelector from './components/TrackSelector';
 import Intro from './components/Intro';
 import Outro from './components/Outro';
 import { Player } from 'tone';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const players = [];
@@ -13,14 +14,14 @@ function App() {
   }
 
   return (
-    <>
+    <BrowserRouter>
       {/* <Header /> */}
       <main className="appContainer">
         <Intro />
         <TrackSelector players={players} />
         <Outro />
       </main>
-    </>
+    </BrowserRouter>
   );
 }
 
