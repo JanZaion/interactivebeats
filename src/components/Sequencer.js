@@ -22,7 +22,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
     players.forEach((player) => player.stop());
     Transport.stop();
     Transport.bpm.value = BPM;
-  }, [groupParams]);
+  }, [groupParams, BPM, players]);
 
   const loops = {
     group1: [players[0], players[1], players[2], players[3]],

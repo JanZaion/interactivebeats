@@ -17,7 +17,7 @@ const TrackWrapper = ({ track, players }) => {
       await Promise.all(players.map((loop, index) => loop.load(require(`../tracks/${folder}/${index}.opus`))));
       setAreTracksLoaded(true);
     })();
-  }, [track]);
+  }, [folder, players]);
 
   return (
     <>
