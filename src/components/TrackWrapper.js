@@ -2,8 +2,12 @@ import Sequencer from './Sequencer';
 import Loading from './Loading';
 import TrackMetadata from './TrackMetadata';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { tracks } from '../tracks/tracks';
 
-const TrackWrapper = ({ track, players }) => {
+const TrackWrapper = ({ players }) => {
+  const { route } = useParams();
+  const track = tracks.find((track) => track.route === route);
   const { groupParams, BPM, producer, genre, folder } = track;
   const [areTracksLoaded, setAreTracksLoaded] = useState(false);
 
