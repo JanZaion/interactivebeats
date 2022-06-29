@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { tracks } from '../tracks/tracks';
 import TrackWrapper from './TrackWrapper';
 
-const TrackSelector = ({ loops }) => {
+const TrackSelector = ({ players }) => {
   const [selectedTrack, setSelectedTrack] = useState(tracks[0]);
 
   return (
@@ -14,7 +14,7 @@ const TrackSelector = ({ loops }) => {
           </option>
         ))}
       </select>
-      <TrackWrapper track={selectedTrack} loops={loops} />
+      <TrackWrapper track={selectedTrack} players={players} />
     </>
   );
 };

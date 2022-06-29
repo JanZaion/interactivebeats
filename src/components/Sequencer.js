@@ -17,7 +17,20 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
-const Sequencer = ({ BPM, tick, groupParams, loops }) => {
+const Sequencer = ({ BPM, tick, groupParams, players }) => {
+  useEffect(() => {
+    players.forEach((player) => player.stop());
+    Transport.stop();
+    Transport.bpm.value = BPM;
+  }, [groupParams]);
+
+  const loops = {
+    group1: [players[0], players[1], players[2], players[3]],
+    group2: [players[4], players[5], players[6], players[7]],
+    group3: [players[8], players[9], players[10], players[11]],
+    group4: [players[12], players[13], players[14], players[15]],
+  };
+
   const playPadsOnInit = {
     group1: [false, false, false, false],
     group2: [false, false, false, false],
@@ -25,19 +38,10 @@ const Sequencer = ({ BPM, tick, groupParams, loops }) => {
     group4: [false, false, false, false],
   };
 
-  Transport.bpm.value = BPM;
-
   const [activeLoops, setActiveLoops] = useState({ ...playPadsOnInit });
   const activeLoopsRef = useRef({ ...playPadsOnInit });
   const [queuedLoops, setQueuedLoops] = useState({ ...playPadsOnInit });
   const queuedLoopsRef = useRef({ ...playPadsOnInit });
-
-  // useEffect(() => {
-  //   setActiveLoops({ ...playPadsOnInit });
-  //   activeLoopsRef.current = { ...playPadsOnInit };
-  //   setQueuedLoops({ ...playPadsOnInit });
-  //   queuedLoopsRef.current = { ...playPadsOnInit };
-  // }, [groupParams]);
 
   const Clock = new Loop((time) => {
     const qls = queuedLoopsRef.current;

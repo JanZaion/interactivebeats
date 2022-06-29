@@ -5,11 +5,11 @@ import Outro from './components/Outro';
 import { Player } from 'tone';
 
 function App() {
-  const loops = [];
+  const players = [];
   for (let i = 0; i < 16; i++) {
     const loop = new Player().toDestination();
     loop.loop = true;
-    loops.push(loop);
+    players.push(loop);
   }
 
   return (
@@ -17,7 +17,7 @@ function App() {
       {/* <Header /> */}
       <main className="appContainer">
         <Intro />
-        <TrackSelector loops={loops} />
+        <TrackSelector players={players} />
         <Outro />
       </main>
     </>
