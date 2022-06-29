@@ -1,5 +1,5 @@
 import InstrumentGroup from './InstrumentGroup';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import * as Tone from 'tone';
 const { Loop, Transport } = Tone;
 
@@ -31,6 +31,13 @@ const Sequencer = ({ BPM, tick, groupParams, loops }) => {
   const activeLoopsRef = useRef({ ...playPadsOnInit });
   const [queuedLoops, setQueuedLoops] = useState({ ...playPadsOnInit });
   const queuedLoopsRef = useRef({ ...playPadsOnInit });
+
+  // useEffect(() => {
+  //   setActiveLoops({ ...playPadsOnInit });
+  //   activeLoopsRef.current = { ...playPadsOnInit };
+  //   setQueuedLoops({ ...playPadsOnInit });
+  //   queuedLoopsRef.current = { ...playPadsOnInit };
+  // }, [groupParams]);
 
   const Clock = new Loop((time) => {
     const qls = queuedLoopsRef.current;

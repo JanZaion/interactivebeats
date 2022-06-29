@@ -1,31 +1,20 @@
-import React, { useState, Suspense } from 'react';
+import { useState } from 'react';
 import { tracks } from '../tracks/tracks';
-import loadable from '@loadable/component';
-// import { Transport } from 'tone';
+import TrackWrapper from './TrackWrapper';
 
-// const TrackComponent = React.lazy(() => import('../tracks/Phonk'));
-
-const TrackSelector = () => {
-  const [selectedTrack, setSelectedTrack] = useState(tracks[0].componentName); //fetched twice on initial load for some reason, look into it
-
-  const TrackComponent = loadable((props) => import(`../tracks/${props.track}`), {
-    cacheKey: (props) => props.track,
-  });
-
-  const dropdownSelect = (e) => {
-    setSelectedTrack(e.target.value);
-  };
+const TrackSelector = ({ loops }) => {
+  const [selectedTrack, setSelectedTrack] = useState(tracks[0]);
 
   return (
     <>
-      <select className="dropdown" onChange={(e) => dropdownSelect(e)}>
+      <select className="dropdown" onChange={(e) => setSelectedTrack(tracks[e.target.value])}>
         {tracks.map((track, index) => (
-          <option key={index} value={track.componentName}>
-            {track.trackName}
+          <option key={index} value={index}>
+            {track.title}
           </option>
         ))}
       </select>
-      <TrackComponent track={selectedTrack} fallback={<div>Loading...</div>} />
+      <TrackWrapper track={selectedTrack} loops={loops} />
     </>
   );
 };
