@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { tracks } from '../tracks/tracks';
-import TrackWrapper from './TrackWrapper';
+import RouteChecker from './RouteChecker';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const TrackSelector = ({ players }) => {
@@ -23,7 +23,7 @@ const TrackSelector = ({ players }) => {
       <Routes>
         <Route
           path={`bossequencer/:route`}
-          element={<TrackWrapper players={players} setActiveTrack={setActiveTrack} />}
+          element={<RouteChecker players={players} setActiveTrack={setActiveTrack} />}
         />
       </Routes>
     </>
