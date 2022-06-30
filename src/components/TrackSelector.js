@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { tracks } from '../tracks/tracks';
 import RouteChecker from './RouteChecker';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import TrackLoader from './TrackLoader';
 
 const TrackSelector = ({ players }) => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const TrackSelector = ({ players }) => {
           path={`bossequencer/:route`}
           element={<RouteChecker players={players} setActiveTrack={setActiveTrack} />}
         />
+        <Route path={`bossequencer/`} element={<TrackLoader players={players} track={tracks[0]} />} />
       </Routes>
     </>
   );
