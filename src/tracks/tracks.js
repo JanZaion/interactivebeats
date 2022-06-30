@@ -6,6 +6,8 @@ export const tracks = [
     folder: 'phonk',
     BPM: 125,
     route: 'Phonk',
+    opusSize: 1,
+    wavSize: 2,
     groupParams: {
       group1: { name: 'drums', color: '#f6f47b' },
       group2: { name: 'bass', color: '#192f95' },
@@ -20,6 +22,8 @@ export const tracks = [
     folder: 'revPhonk',
     BPM: 125,
     route: 'Rev-phonk',
+    opusSize: 1,
+    wavSize: 2,
     groupParams: {
       group1: { name: 'you', color: 'pink' },
       group2: { name: 'are', color: 'purple' },
