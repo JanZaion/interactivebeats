@@ -6,8 +6,8 @@ export const tracks = [
     folder: 'phonk',
     BPM: 125,
     route: 'Phonk',
-    opusSize: 1,
-    wavSize: 2,
+    opusSize: '750 KB',
+    wavSize: '9.36 MB',
     groupParams: {
       group1: { name: 'drums', color: '#f6f47b' },
       group2: { name: 'bass', color: '#192f95' },

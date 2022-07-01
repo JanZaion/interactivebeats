@@ -10,7 +10,7 @@ const TrackSelector = ({ players }) => {
 
   return (
     <>
-      <select //add selected option based on current route or whatever
+      <select
         className="dropdown"
         onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
         value={activeTrack}
