@@ -10,17 +10,19 @@ const TrackSelector = ({ players }) => {
 
   return (
     <>
-      <select
-        className="dropdown"
-        onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
-        value={activeTrack}
-      >
-        {tracks.map((track, index) => (
-          <option key={index} value={index}>
-            {track.title}
-          </option>
-        ))}
-      </select>
+      <div className="metadataBox">
+        <select
+          className="dropdown"
+          onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
+          value={activeTrack}
+        >
+          {tracks.map((track, index) => (
+            <option key={index} value={index}>
+              {track.title}
+            </option>
+          ))}
+        </select>
+      </div>
       <Routes>
         <Route
           path={`bossequencer/:route`}

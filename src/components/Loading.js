@@ -1,5 +1,5 @@
 const Loading = () => {
-  return <div>Loading...</div>;
+  return <div>Fetching loops from server...</div>;
 };
 
 export default Loading;
