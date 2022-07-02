@@ -74,7 +74,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
   };
 
   return (
-    <div className="sequencerBox">
+    <div className="contentBox" id="sequencer">
       {Object.keys(playPadsOnInit).map((group, index) => (
         <InstrumentGroup
           key={index}

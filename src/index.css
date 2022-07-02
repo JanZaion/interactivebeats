@@ -1,3 +1,12 @@
+:root {
+  --playbuttongap-grid-gap: 0.1rem;
+  --pad-max-width-big-screen: 380px;
+  --pad-max-width-small-screen: 100vw;
+  --pad-resting-background-color: #d5d5d5;
+  --pad-inner-shape-color: white;
+  --p-text-color: white;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
@@ -6,15 +15,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background: #1a3046;
-}
-
-:root {
-  --playbuttongap-grid-gap: 0.1rem;
-  --pad-max-width-big-screen: 380px;
-  --pad-max-width-small-screen: 100vw;
-  --pad-resting-background-color: #d5d5d5;
-  --pad-inner-shape-color: white;
-  --p-text-color: white;
+  color: var(--p-text-color);
 }
 
 header {
@@ -56,14 +57,33 @@ header {
   color: rgb(212, 135, 104);
 }
 
-.sequencerBox {
+.contentBox {
   max-width: var(--pad-max-width-big-screen);
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+  padding: 0 4vw 0 4vw;
+}
+
+#trackMetadata {
+  display: block;
+}
+
+#sequencer {
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: var(--playbuttongap-grid-gap);
+}
+
+#trackSelector {
+  margin-top: 1rem;
+}
+
+#loading {
+  display: grid;
+  place-items: center;
+  height: 200px;
 }
 
 .instrumentGroup {
@@ -108,10 +128,11 @@ header {
 }
 /* fluff */
 .dropdown {
-  width: 300px;
-  border-radius: 10px;
+  width: 63%;
+  border-radius: 3px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   background-color: white;
+  cursor: pointer;
 }
 
 .dropdown-header {
@@ -164,7 +185,7 @@ header {
 /* fluff */
 
 @media only screen and (max-width: 450px) {
-  .sequencerBox {
+  .contentBox {
     max-width: var(--pad-max-width-small-screen);
   }
 

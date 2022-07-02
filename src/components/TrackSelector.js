@@ -10,7 +10,7 @@ const TrackSelector = ({ players }) => {
 
   return (
     <>
-      <div className="metadataBox">
+      <div className="contentBox" id="trackSelector">
         <select
           className="dropdown"
           onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
