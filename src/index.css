@@ -86,6 +86,13 @@ header {
   height: 200px;
 }
 
+.footer {
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+}
+
 .instrumentGroup {
   color: var(--p-text-color);
   display: grid;

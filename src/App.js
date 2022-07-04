@@ -1,7 +1,6 @@
-// import Header from './components/Header';
+import Footer from './components/Footer';
 import TrackSelector from './components/TrackSelector';
 import Intro from './components/Intro';
-import Outro from './components/Outro';
 import { Player } from 'tone';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -15,12 +14,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Header /> */}
       <main className="appContainer">
         <Intro />
         <TrackSelector players={players} />
-        <Outro />
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
