@@ -1,7 +1,8 @@
 const Loading = () => {
   return (
     <div className="contentBox" id="loading">
-      Fetching loops from server...
+      Fetching loops from server
+      <div class="dot-bricks" />
     </div>
   );
 };

@@ -184,6 +184,15 @@ header {
 }
 /* fluff */
 
+.dot-bricks {
+  position: relative;
+  left: -9999px;
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  animation: dotBricks 2s infinite ease;
+}
+
 @media only screen and (max-width: 450px) {
   .contentBox {
     max-width: var(--pad-max-width-small-screen);
@@ -311,5 +320,60 @@ header {
   }
   100% {
     background-color: var(--pad-resting-background-color);
+  }
+}
+
+@keyframes dotBricks {
+  0% {
+    box-shadow: 9991px -16px 0 0 var(--p-text-color), 9991px 0 0 0 var(--p-text-color),
+      10007px 0 0 0 var(--p-text-color);
+  }
+  8.333% {
+    box-shadow: 10007px -16px 0 0 var(--p-text-color), 9991px 0 0 0 var(--p-text-color),
+      10007px 0 0 0 var(--p-text-color);
+  }
+  16.667% {
+    box-shadow: 10007px -16px 0 0 var(--p-text-color), 9991px -16px 0 0 var(--p-text-color),
+      10007px 0 0 0 var(--p-text-color);
+  }
+  25% {
+    box-shadow: 10007px -16px 0 0 var(--p-text-color), 9991px -16px 0 0 var(--p-text-color),
+      9991px 0 0 0 var(--p-text-color);
+  }
+  33.333% {
+    box-shadow: 10007px 0 0 0 var(--p-text-color), 9991px -16px 0 0 var(--p-text-color),
+      9991px 0 0 0 var(--p-text-color);
+  }
+  41.667% {
+    box-shadow: 10007px 0 0 0 var(--p-text-color), 10007px -16px 0 0 var(--p-text-color),
+      9991px 0 0 0 var(--p-text-color);
+  }
+  50% {
+    box-shadow: 10007px 0 0 0 var(--p-text-color), 10007px -16px 0 0 var(--p-text-color),
+      9991px -16px 0 0 var(--p-text-color);
+  }
+  58.333% {
+    box-shadow: 9991px 0 0 0 var(--p-text-color), 10007px -16px 0 0 var(--p-text-color),
+      9991px -16px 0 0 var(--p-text-color);
+  }
+  66.666% {
+    box-shadow: 9991px 0 0 0 var(--p-text-color), 10007px 0 0 0 var(--p-text-color),
+      9991px -16px 0 0 var(--p-text-color);
+  }
+  75% {
+    box-shadow: 9991px 0 0 0 var(--p-text-color), 10007px 0 0 0 var(--p-text-color),
+      10007px -16px 0 0 var(--p-text-color);
+  }
+  83.333% {
+    box-shadow: 9991px -16px 0 0 var(--p-text-color), 10007px 0 0 0 var(--p-text-color),
+      10007px -16px 0 0 var(--p-text-color);
+  }
+  91.667% {
+    box-shadow: 9991px -16px 0 0 var(--p-text-color), 9991px 0 0 0 var(--p-text-color),
+      10007px -16px 0 0 var(--p-text-color);
+  }
+  100% {
+    box-shadow: 9991px -16px 0 0 var(--p-text-color), 9991px 0 0 0 var(--p-text-color),
+      10007px 0 0 0 var(--p-text-color);
   }
 }
