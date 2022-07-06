@@ -18,25 +18,37 @@ body {
   color: var(--p-text-color);
 }
 
-.intro {
-  color: var(--p-text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-  padding: 0 4vw 0 4vw;
+.appContainer {
+  height: 93vh;
 }
 
 .contentBox {
   max-width: var(--pad-max-width-big-screen);
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2rem;
+  padding: 0 4vw 0 4vw;
+}
+
+.intro {
+  height: 8%;
+  color: var(--p-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0 4vw 0 4vw;
 }
 
 #trackMetadata {
   display: block;
+  list-style-type: none;
+}
+
+#trackMetadata li {
+  margin-bottom: 10px;
+}
+
+#trackSelector {
+  height: 3%;
 }
 
 #sequencer {
@@ -46,21 +58,15 @@ body {
   grid-gap: var(--playbuttongap-grid-gap);
 }
 
-#trackSelector {
-  margin-top: 1rem;
-}
-
 #loading {
   display: grid;
   place-items: center;
-  height: 200px;
-}
-
-#footer {
+  height: var(--pad-max-width-big-screen);
 }
 
 .footerDivider {
-  border-top: 1px solid #eaeaea;
+  height: 3vh;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .githubLink {
@@ -116,56 +122,8 @@ body {
   cursor: pointer;
 }
 
-.dropdown-header {
-  padding: 15px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dropdown-body {
-  padding: 5px;
-  border-top: 1px solid #e5e8ec;
-  display: none;
-}
-
-.dropdown-body.open {
-  display: block;
-  position: absolute;
-}
-
-.dropdown-item {
-  padding: 10px;
-}
-
-.dropdown-item:hover {
-  cursor: pointer;
-}
-
-.dropdown-item-dot {
-  opacity: 0;
-  color: #91a5be;
-  transition: all 0.2s ease-in-out;
-}
-
-.dropdown-item-dot.selected {
-  opacity: 1;
-}
-
-.icon {
-  font-size: 13px;
-  color: #91a5be;
-  transform: rotate(0deg);
-  transition: all 0.2s ease-in-out;
-}
-
-.icon.open {
-  transform: rotate(90deg);
-}
-/* fluff */
-
 .dot-bricks {
+  align-self: flex-start;
   position: relative;
   left: -9999px;
   width: 8px;

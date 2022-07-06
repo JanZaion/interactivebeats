@@ -17,8 +17,8 @@ function App() {
       <main className="appContainer">
         <Intro />
         <TrackSelector players={players} />
+        <Footer />
       </main>
-      <Footer />
     </BrowserRouter>
   );
 }

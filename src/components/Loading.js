@@ -2,7 +2,7 @@ const Loading = () => {
   return (
     <div className="contentBox" id="loading">
       Fetching loops from server...
-      <div class="dot-bricks" />
+      <div className="dot-bricks" />
     </div>
   );
 };
