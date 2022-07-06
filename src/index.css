@@ -1,5 +1,5 @@
 :root {
-  --playbuttongap-grid-gap: 0.1rem;
+  --playbuttongap-grid-gap: 1px;
   --pad-max-width-big-screen: 380px;
   --pad-max-width-small-screen: 100vw;
   --pad-resting-background-color: #d5d5d5;
@@ -25,10 +25,6 @@ body {
   align-items: center;
   height: 10vh;
   padding: 0 4vw 0 4vw;
-}
-
-.githubLink {
-  color: rgb(212, 135, 104);
 }
 
 .contentBox {
@@ -60,11 +56,15 @@ body {
   height: 200px;
 }
 
-.footer {
-  display: grid;
-  place-items: center;
-  padding: 2rem 0;
+#footer {
+}
+
+.footerDivider {
   border-top: 1px solid #eaeaea;
+}
+
+.githubLink {
+  color: rgb(212, 135, 104);
 }
 
 .instrumentGroup {
