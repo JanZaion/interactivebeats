@@ -13,7 +13,7 @@ const RouteChecker = ({ players, setActiveTrack }) => {
     setActiveTrack(trackIndex);
   }, [trackIndex]); //eslint-disable-line
 
-  return <>{track ? <TrackLoader players={players} track={track} /> : <NotFound />}</>;
+  return <>{track ? <TrackLoader players={players} track={track} /> : <NotFound route={route} />}</>;
 };
 
 export default RouteChecker;
