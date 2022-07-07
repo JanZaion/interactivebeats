@@ -3,7 +3,7 @@ import Loading from './Loading';
 import TrackMetadata from './TrackMetadata';
 import { useState, useEffect } from 'react';
 
-const TrackLoader = ({ players, track }) => {
+const TrackLoader = ({ players, track, setSelectDisabled }) => {
   const [areTracksLoaded, setAreTracksLoaded] = useState(false);
   const { groupParams, BPM, producer, genre, folder, opusSize, wavSize } = track;
   const UA = navigator.userAgent;
@@ -16,13 +16,15 @@ const TrackLoader = ({ players, track }) => {
 
   useEffect(() => {
     (async () => {
+      setSelectDisabled(true);
       setAreTracksLoaded(false);
       await Promise.all(
         players.map((loop, index) => loop.load(require(`../tracks/${folder}/${index}.${audioFormat}`)))
       );
       setAreTracksLoaded(true);
+      setSelectDisabled(false);
     })();
-  }, [folder, players, audioFormat]);
+  }, [folder, players, audioFormat]); //eslint-disable-line
 
   return (
     <>

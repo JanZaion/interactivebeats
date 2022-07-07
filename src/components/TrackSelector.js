@@ -7,6 +7,7 @@ import TrackLoader from './TrackLoader';
 const TrackSelector = ({ players }) => {
   const navigate = useNavigate();
   const [activeTrack, setActiveTrack] = useState(0);
+  const [selectDisabled, setSelectDisabled] = useState(false);
 
   return (
     <>
@@ -15,6 +16,7 @@ const TrackSelector = ({ players }) => {
           className="dropdown"
           onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
           value={activeTrack}
+          disabled={selectDisabled}
         >
           {tracks.map((track, index) => (
             <option key={index} value={index}>
@@ -26,7 +28,9 @@ const TrackSelector = ({ players }) => {
       <Routes>
         <Route
           path={`bossequencer/:route`}
-          element={<RouteChecker players={players} setActiveTrack={setActiveTrack} />}
+          element={
+            <RouteChecker players={players} setActiveTrack={setActiveTrack} setSelectDisabled={setSelectDisabled} />
+          }
         />
         <Route path={`bossequencer/`} element={<TrackLoader players={players} track={tracks[0]} />} />
       </Routes>
