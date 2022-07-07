@@ -43,10 +43,10 @@ body {
 #trackMetadata {
   display: block;
   list-style-type: none;
-}
 
-#trackMetadata li {
-  margin-bottom: 10px;
+  li {
+    margin-bottom: 10px;
+  }
 }
 
 #trackSelector {
@@ -95,10 +95,10 @@ body {
   cursor: pointer;
   height: calc(var(--pad-max-width-big-screen) / 4);
   background: var(--pad-resting-background-color);
-}
 
-.pad:hover {
-  background: darkgray;
+  &:hover {
+    background: darkgray;
+  }
 }
 
 .triangle {
@@ -144,125 +144,49 @@ body {
   }
 }
 
-@keyframes group1StartAnim {
-  0% {
-    background-color: var(--pad-resting-background-color);
-  }
-  25% {
-    background-color: var(--pad-group1-background-color);
-  }
-  50% {
-    background-color: var(--pad-resting-background-color);
-  }
-  100% {
-    background-color: var(--pad-group1-background-color);
-  }
-}
-
-@keyframes group2StartAnim {
-  0% {
-    background-color: var(--pad-resting-background-color);
-  }
-  25% {
-    background-color: var(--pad-group2-background-color);
-  }
-  50% {
-    background-color: var(--pad-resting-background-color);
-  }
-  100% {
-    background-color: var(--pad-group2-background-color);
+@mixin startAnim($name, $restingColor, $groupColor) {
+  @keyframes #{$name} {
+    0% {
+      background-color: $restingColor;
+    }
+    25% {
+      background-color: $groupColor;
+    }
+    50% {
+      background-color: $restingColor;
+    }
+    100% {
+      background-color: $groupColor;
+    }
   }
 }
 
-@keyframes group4StartAnim {
-  0% {
-    background-color: var(--pad-resting-background-color);
-  }
-  25% {
-    background-color: var(--pad-group4-background-color);
-  }
-  50% {
-    background-color: var(--pad-resting-background-color);
-  }
-  100% {
-    background-color: var(--pad-group4-background-color);
-  }
-}
-
-@keyframes group3StartAnim {
-  0% {
-    background-color: var(--pad-resting-background-color);
-  }
-  25% {
-    background-color: var(--pad-group3-background-color);
-  }
-  50% {
-    background-color: var(--pad-resting-background-color);
-  }
-  100% {
-    background-color: var(--pad-group3-background-color);
+@mixin stopAnim($name, $restingColor, $groupColor) {
+  @keyframes #{$name} {
+    0% {
+      background-color: $groupColor;
+    }
+    25% {
+      background-color: $restingColor;
+    }
+    50% {
+      background-color: $groupColor;
+    }
+    100% {
+      background-color: $restingColor;
+    }
   }
 }
 
-@keyframes group1StopAnim {
-  0% {
-    background-color: var(--pad-group1-background-color);
-  }
-  25% {
-    background-color: var(--pad-resting-background-color);
-  }
-  50% {
-    background-color: var(--pad-group1-background-color);
-  }
-  100% {
-    background-color: var(--pad-resting-background-color);
-  }
-}
+@include startAnim(group1StartAnim, var(--pad-resting-background-color), var(--pad-group1-background-color));
+@include startAnim(group2StartAnim, var(--pad-resting-background-color), var(--pad-group2-background-color));
+@include startAnim(group3StartAnim, var(--pad-resting-background-color), var(--pad-group3-background-color));
+@include startAnim(group4StartAnim, var(--pad-resting-background-color), var(--pad-group4-background-color));
 
-@keyframes group2StopAnim {
-  0% {
-    background-color: var(--pad-group2-background-color);
-  }
-  25% {
-    background-color: var(--pad-resting-background-color);
-  }
-  50% {
-    background-color: var(--pad-group2-background-color);
-  }
-  100% {
-    background-color: var(--pad-resting-background-color);
-  }
-}
-
-@keyframes group4StopAnim {
-  0% {
-    background-color: var(--pad-group4-background-color);
-  }
-  25% {
-    background-color: var(--pad-resting-background-color);
-  }
-  50% {
-    background-color: var(--pad-group4-background-color);
-  }
-  100% {
-    background-color: var(--pad-resting-background-color);
-  }
-}
-
-@keyframes group3StopAnim {
-  0% {
-    background-color: var(--pad-group3-background-color);
-  }
-  25% {
-    background-color: var(--pad-resting-background-color);
-  }
-  50% {
-    background-color: var(--pad-group3-background-color);
-  }
-  100% {
-    background-color: var(--pad-resting-background-color);
-  }
-}
+@include stopAnim(group1StopAnim, var(--pad-resting-background-color), var(--pad-group1-background-color));
+@include stopAnim(group2StopAnim, var(--pad-resting-background-color), var(--pad-group2-background-color));
+@include stopAnim(group3StopAnim, var(--pad-resting-background-color), var(--pad-group3-background-color));
+@include stopAnim(group4StopAnim, var(--pad-resting-background-color), var(--pad-group4-background-color));
 
 @keyframes dotBricks {
   0% {
