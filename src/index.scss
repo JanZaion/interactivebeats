@@ -21,7 +21,6 @@ body {
 
 .appContainer {
   height: 100vh;
-  /* background: rgb(87, 87, 87, 0.3); */
 }
 
 .contentBox {
@@ -68,7 +67,7 @@ body {
 }
 
 #footer {
-  margin-top: 2vh;
+  margin-top: 1.5vh;
 }
 
 .githubLink {
@@ -122,16 +121,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   background-color: white;
   cursor: pointer;
-}
-
-.dot-bricks {
-  align-self: flex-start;
-  position: relative;
-  left: -9999px;
-  width: 8px;
-  height: 8px;
-  border-radius: 1px;
-  animation: dotBricks 2s infinite ease;
 }
 
 @media only screen and (max-width: 450px) {
@@ -188,6 +177,16 @@ body {
 @include stopAnim(group3StopAnim, var(--pad-resting-background-color), var(--pad-group3-background-color));
 @include stopAnim(group4StopAnim, var(--pad-resting-background-color), var(--pad-group4-background-color));
 
+.dot-bricks {
+  align-self: flex-start;
+  position: relative;
+  left: -9999px;
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  animation: dotBricks 2s infinite ease;
+}
+
 @keyframes dotBricks {
   0% {
     box-shadow: 9991px -16px 0 0 var(--text-color), 9991px 0 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
@@ -227,5 +226,55 @@ body {
   }
   100% {
     box-shadow: 9991px -16px 0 0 var(--text-color), 9991px 0 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
+  }
+}
+
+.frontContent {
+  position: relative;
+  z-index: 100;
+}
+
+.bcgAnim {
+  background: #3e1e68;
+  z-index: 1;
+}
+
+$particleSize: 20vmin;
+$animationDuration: 6s;
+$amount: 20;
+.bcgAnim span {
+  width: $particleSize;
+  height: $particleSize;
+  border-radius: $particleSize;
+  backface-visibility: hidden;
+  position: fixed;
+  animation-name: move;
+  animation-duration: $animationDuration;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  $colors: (
+    var(--pad-group1-background-color),
+    var(--pad-group2-background-color),
+    var(--pad-group3-background-color),
+    var(--pad-group4-background-color)
+  );
+  @for $i from 1 through $amount {
+    &:nth-child(#{$i}) {
+      color: nth($colors, random(length($colors)));
+      top: random(100) * 1%;
+      left: random(100) * 1%;
+      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+      animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
+      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+      $x: if(random() > 0.5, -1, 1);
+      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+    }
+  }
+}
+
+@keyframes move {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
   }
 }

@@ -14,11 +14,35 @@ function App() {
 
   return (
     <BrowserRouter>
-      <main className="appContainer">
-        <Intro />
-        <TrackSelector players={players} />
-        <Footer />
-      </main>
+      <div className="appContainer">
+        <main className="frontContent">
+          <Intro />
+          <TrackSelector players={players} />
+          <Footer />
+        </main>
+        <div className="bcgAnim">
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+          <span className="part"></span>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
