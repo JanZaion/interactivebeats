@@ -20,7 +20,8 @@ body {
 }
 
 .appContainer {
-  height: 93vh;
+  height: 100vh;
+  /* background: rgb(87, 87, 87, 0.3); */
 }
 
 .contentBox {
@@ -59,7 +60,8 @@ body {
   grid-gap: var(--playbuttongap-grid-gap);
 }
 
-#loading {
+#loading,
+#notFound {
   display: grid;
   place-items: center;
   height: var(--pad-max-width-big-screen);
