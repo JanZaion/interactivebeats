@@ -15,8 +15,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="appContainer">
-        <main className="frontContent">
+      <div>
+        <main className="appContainer">
           <Intro />
           <TrackSelector players={players} />
           <Footer />

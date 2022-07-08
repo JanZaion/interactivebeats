@@ -32,7 +32,10 @@ const TrackSelector = ({ players }) => {
             <RouteChecker players={players} setActiveTrack={setActiveTrack} setSelectDisabled={setSelectDisabled} />
           }
         />
-        <Route path={`bossequencer/`} element={<TrackLoader players={players} track={tracks[0]} />} />
+        <Route
+          path={`bossequencer/`}
+          element={<TrackLoader players={players} track={tracks[0]} setSelectDisabled={setSelectDisabled} />}
+        />
       </Routes>
     </>
   );
