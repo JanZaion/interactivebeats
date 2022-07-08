@@ -15,14 +15,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
-        <main className="appContainer">
-          <Intro />
-          <TrackSelector players={players} />
-          <Footer />
-        </main>
-        <BcgAnim />
-      </div>
+      <main className="appContainer">
+        <Intro />
+        <TrackSelector players={players} />
+        <Footer />
+      </main>
+      <BcgAnim />
     </BrowserRouter>
   );
 }

@@ -6,7 +6,7 @@
   --pad-inner-shape-color: white;
   --text-color: white;
   --background-color: #1a3046;
-  --dancing-animation-time: 1s;
+  --dancing-animation-time: 0.9s;
 }
 
 body {
@@ -250,11 +250,14 @@ body {
 
 $box-shadows: var(--pad-group1-background-color), var(--pad-group2-background-color), var(--pad-group3-background-color),
   var(--pad-group4-background-color), var(--pad-group1-background-color), var(--pad-group2-background-color),
-  var(--pad-group3-background-color), var(--pad-group4-background-color);
+  var(--pad-group3-background-color), var(--pad-group4-background-color), var(--pad-group1-background-color),
+  var(--pad-group2-background-color), var(--pad-group3-background-color), var(--pad-group4-background-color),
+  var(--pad-group1-background-color), var(--pad-group2-background-color), var(--pad-group3-background-color),
+  var(--pad-group4-background-color);
 
-$transforms: 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7;
+$transforms: 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7, 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7;
 
-$lefts: 0%, 15%, -15%, -49%, 57%, -81%, 37%, 85%;
+$lefts: 0%, 15%, -15%, -49%, 57%, -87%, 37%, 85% -90%, 30%, -25%, -59%, 37%, -70%, -93%, 80%;
 
 @mixin beamClass($class, $box-shadow, $transform, $left, $animTime) {
   .#{$class} {
@@ -265,7 +268,7 @@ $lefts: 0%, 15%, -15%, -49%, 57%, -81%, 37%, 85%;
   }
 }
 
-@for $i from 1 through 8 {
+@for $i from 1 through 15 {
   @include beamClass(
     x#{$i},
     nth($box-shadows, $i),
