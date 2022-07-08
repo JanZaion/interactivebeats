@@ -1,6 +1,7 @@
 import Footer from './components/Footer';
 import TrackSelector from './components/TrackSelector';
 import Intro from './components/Intro';
+import BcgAnim from './components/BcgAnim';
 import { Player } from 'tone';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -20,17 +21,7 @@ function App() {
           <TrackSelector players={players} />
           <Footer />
         </main>
-        <div className="bcgAnim">
-          <div class="light x1"></div>
-          <div class="light x2"></div>
-          <div class="light x3"></div>
-          <div class="light x4"></div>
-          <div class="light x5"></div>
-          <div class="light x6"></div>
-          <div class="light x7"></div>
-          <div class="light x8"></div>
-          <div class="light x9"></div>
-        </div>
+        <BcgAnim />
       </div>
     </BrowserRouter>
   );
