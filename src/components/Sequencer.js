@@ -17,6 +17,8 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
+let Clock;
+
 const Sequencer = ({ BPM, groupParams, players }) => {
   useEffect(() => {
     players.forEach((player) => player.stop());
@@ -43,16 +45,21 @@ const Sequencer = ({ BPM, groupParams, players }) => {
   const [queuedLoops, setQueuedLoops] = useState({ ...playPadsOnInit });
   const queuedLoopsRef = useRef({ ...playPadsOnInit });
 
-  const Clock = new Loop((time) => {
-    const qls = queuedLoopsRef.current;
-    switchAudioLoops(qls, activeLoopsRef.current, loops, time);
+  useEffect(() => {
+    Clock = new Loop((time) => {
+      const qls = queuedLoopsRef.current;
+      switchAudioLoops(qls, activeLoopsRef.current, loops, time);
 
-    setActiveLoops({ ...qls });
-    activeLoopsRef.current = { ...qls };
+      setActiveLoops({ ...qls });
+      activeLoopsRef.current = { ...qls };
 
-    const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
-    if (willTransportStop) Transport.stop().position = 0;
-  }, '1n');
+      const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
+      if (willTransportStop) Transport.stop().position = 0;
+      // if (willTransportStop) document.documentElement.style.setProperty(`--dancing-animation-time`, '0s');
+    }, '1n');
+
+    return () => Clock.dispose();
+  }, []); //eslint-disable-line
 
   const startOnFirstClick = () => {
     if (Transport.state === 'started') return;
@@ -71,6 +78,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
   const handlePadClick = (group, id) => {
     startOnFirstClick();
     queLoopsOnClick(group, id);
+    // document.documentElement.style.setProperty(`--dancing-animation-time`, '2s');
   };
 
   return (
