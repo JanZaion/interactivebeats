@@ -1,7 +1,7 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useRef, useEffect } from 'react';
 import * as Tone from 'tone';
-const { Loop, Transport } = Tone;
+const { Loop, Transport, Time } = Tone;
 
 const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   Object.keys(queuedLoops).forEach((group) => {
@@ -17,6 +17,22 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
+const stl = document.documentElement.style;
+const stopDancingAnim = () => stl.setProperty('--dancing-s', '0s');
+const startDancingAnim = () => stl.setProperty('--dancing-s', `${Time('1m').toSeconds()}s`);
+
+const pickBcgColors = (loopStates, beamsNum, groupParams) => {
+  const groupStates = Object.keys(loopStates).map((group) => loopStates[group].some((p) => p));
+
+  for (let i = 1; i < beamsNum + 1; i++) {
+    const groupIndex = Math.floor(i / 4);
+    console.log(typeof groupIndex);
+    groupStates[groupIndex]
+      ? stl.setProperty(`--dancing-color-${i}`, groupParams[`group${groupIndex + 1}`].color)
+      : stl.setProperty(`--dancing-color-${i}`, 'var(--pad-resting-background-color');
+  }
+};
+
 let Clock;
 
 const Sequencer = ({ BPM, groupParams, players }) => {
@@ -24,6 +40,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
     players.forEach((player) => player.stop());
     Transport.stop();
     Transport.bpm.value = BPM;
+    stopDancingAnim();
   }, [groupParams, BPM, players]);
 
   const loops = {
@@ -52,10 +69,13 @@ const Sequencer = ({ BPM, groupParams, players }) => {
 
       setActiveLoops({ ...qls });
       activeLoopsRef.current = { ...qls };
+      pickBcgColors(activeLoopsRef.current, 16, groupParams);
 
       const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
-      if (willTransportStop) Transport.stop().position = 0;
-      // if (willTransportStop) document.documentElement.style.setProperty(`--dancing-animation-time`, '0s');
+      if (willTransportStop) {
+        Transport.stop().position = 0;
+        stopDancingAnim();
+      }
     }, '1n');
 
     return () => Clock.dispose();
@@ -78,7 +98,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
   const handlePadClick = (group, id) => {
     startOnFirstClick();
     queLoopsOnClick(group, id);
-    // document.documentElement.style.setProperty(`--dancing-animation-time`, '2s');
+    startDancingAnim();
   };
 
   return (

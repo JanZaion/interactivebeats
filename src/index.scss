@@ -6,7 +6,24 @@
   --pad-inner-shape-color: white;
   --text-color: white;
   --background-color: #1a3046;
-  --dancing-animation-time: 0.9s;
+  --dancing-s: 0s;
+
+  --dancing-color-1: var(--pad-resting-background-color);
+  --dancing-color-2: var(--pad-resting-background-color);
+  --dancing-color-3: var(--pad-resting-background-color);
+  --dancing-color-4: var(--pad-resting-background-color);
+  --dancing-color-5: var(--pad-resting-background-color);
+  --dancing-color-6: var(--pad-resting-background-color);
+  --dancing-color-7: var(--pad-resting-background-color);
+  --dancing-color-8: var(--pad-resting-background-color);
+  --dancing-color-9: var(--pad-resting-background-color);
+  --dancing-color-10: var(--pad-resting-background-color);
+  --dancing-color-11: var(--pad-resting-background-color);
+  --dancing-color-12: var(--pad-resting-background-color);
+  --dancing-color-13: var(--pad-resting-background-color);
+  --dancing-color-14: var(--pad-resting-background-color);
+  --dancing-color-15: var(--pad-resting-background-color);
+  --dancing-color-16: var(--pad-resting-background-color);
 }
 
 body {
@@ -248,16 +265,14 @@ body {
   margin: auto;
 }
 
-$box-shadows: var(--pad-group1-background-color), var(--pad-group2-background-color), var(--pad-group3-background-color),
-  var(--pad-group4-background-color), var(--pad-group1-background-color), var(--pad-group2-background-color),
-  var(--pad-group3-background-color), var(--pad-group4-background-color), var(--pad-group1-background-color),
-  var(--pad-group2-background-color), var(--pad-group3-background-color), var(--pad-group4-background-color),
-  var(--pad-group1-background-color), var(--pad-group2-background-color), var(--pad-group3-background-color),
-  var(--pad-group4-background-color);
+$box-shadows: var(--dancing-color-1), var(--dancing-color-2), var(--dancing-color-3), var(--dancing-color-4),
+  var(--dancing-color-5), var(--dancing-color-6), var(--dancing-color-7), var(--dancing-color-8), var(--dancing-color-9),
+  var(--dancing-color-10), var(--dancing-color-11), var(--dancing-color-12), var(--dancing-color-13),
+  var(--dancing-color-14), var(--dancing-color-15), var(--dancing-color-16);
 
 $transforms: 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7, 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7;
 
-$lefts: 0%, 15%, -15%, -49%, 57%, -87%, 37%, 85% -90%, 30%, -25%, -59%, 37%, -70%, -93%, 80%;
+$lefts: -93.5%, -81%, -68.5%, -56%, -43.5%, -31%, -18.5%, -6%, 6.5%, 19%, 31.5%, 44%, 56.5%, 69%, 81.5%, 94%;
 
 @mixin beamClass($class, $box-shadow, $transform, $left, $animTime) {
   .#{$class} {
@@ -269,13 +284,7 @@ $lefts: 0%, 15%, -15%, -49%, 57%, -87%, 37%, 85% -90%, 30%, -25%, -59%, 37%, -70
 }
 
 @for $i from 1 through 15 {
-  @include beamClass(
-    x#{$i},
-    nth($box-shadows, $i),
-    nth($transforms, $i),
-    nth($lefts, $i),
-    var(--dancing-animation-time)
-  );
+  @include beamClass(x#{$i}, nth($box-shadows, $i), nth($transforms, $i), nth($lefts, $i), var(--dancing-s));
 }
 
 @keyframes floatUp {
@@ -283,27 +292,65 @@ $lefts: 0%, 15%, -15%, -49%, 57%, -87%, 37%, 85% -90%, 30%, -25%, -59%, 37%, -70
     top: 100vh;
     opacity: 0;
   }
-  25% {
+  10% {
     opacity: 1;
   }
-  50% {
+  20% {
     top: 0vh;
     opacity: 0.8;
   }
-  75% {
+  30% {
     opacity: 1;
   }
-  100% {
+  40% {
     top: -100vh;
     opacity: 0;
   }
+  50% {
+    top: -100vh;
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  70% {
+    top: 0vh;
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 1;
+  }
+  90% {
+    top: 100vh;
+    opacity: 0;
+  }
 }
+// @keyframes floatUp {
+//   0% {
+//     top: 100vh;
+//     opacity: 0;
+//   }
+//   25% {
+//     opacity: 1;
+//   }
+//   50% {
+//     top: 0vh;
+//     opacity: 0.8;
+//   }
+//   75% {
+//     opacity: 1;
+//   }
+//   100% {
+//     top: -100vh;
+//     opacity: 0;
+//   }
+// }
 
 // .x8 {
-//   -webkit-animation: floatUp var(--dancing-animation-time) infinite linear;
-//   -moz-animation: floatUp var(--dancing-animation-time) infinite linear;
-//   -o-animation: floatUp var(--dancing-animation-time) infinite linear;
-//   animation: floatUp var(--dancing-animation-time) infinite linear;
+//   -webkit-animation: floatUp var(--dancing-s) infinite linear;
+//   -moz-animation: floatUp var(--dancing-s) infinite linear;
+//   -o-animation: floatUp var(--dancing-s) infinite linear;
+//   animation: floatUp var(--dancing-s) infinite linear;
 //   -webkit-transform: scale(1.7);
 //   -moz-transform: scale(1.7);
 //   -o-transform: scale(1.7);
