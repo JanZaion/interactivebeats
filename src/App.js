@@ -1,7 +1,6 @@
 import Footer from './components/Footer';
 import TrackSelector from './components/TrackSelector';
-import Intro from './components/Intro';
-import BcgAnim from './components/BcgAnim';
+import FFTviz from './components/FFTviz';
 import { Player } from 'tone';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -16,11 +15,10 @@ function App() {
   return (
     <BrowserRouter>
       <main className="appContainer">
-        <Intro />
+        <FFTviz players={players} />
         <TrackSelector players={players} />
         <Footer />
       </main>
-      <BcgAnim />
     </BrowserRouter>
   );
 }

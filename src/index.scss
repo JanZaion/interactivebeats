@@ -5,25 +5,6 @@
   --pad-resting-background-color: #d5d5d5;
   --pad-inner-shape-color: white;
   --text-color: white;
-  --background-color: #1a3046;
-  --dancing-s: 0s;
-
-  --dancing-color-1: var(--pad-resting-background-color);
-  --dancing-color-2: var(--pad-resting-background-color);
-  --dancing-color-3: var(--pad-resting-background-color);
-  --dancing-color-4: var(--pad-resting-background-color);
-  --dancing-color-5: var(--pad-resting-background-color);
-  --dancing-color-6: var(--pad-resting-background-color);
-  --dancing-color-7: var(--pad-resting-background-color);
-  --dancing-color-8: var(--pad-resting-background-color);
-  --dancing-color-9: var(--pad-resting-background-color);
-  --dancing-color-10: var(--pad-resting-background-color);
-  --dancing-color-11: var(--pad-resting-background-color);
-  --dancing-color-12: var(--pad-resting-background-color);
-  --dancing-color-13: var(--pad-resting-background-color);
-  --dancing-color-14: var(--pad-resting-background-color);
-  --dancing-color-15: var(--pad-resting-background-color);
-  --dancing-color-16: var(--pad-resting-background-color);
 }
 
 body {
@@ -33,18 +14,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  background: radial-gradient(#000327, #0d0924);
+  background: radial-gradient(rgb(36, 11, 107), #06011f);
   color: var(--text-color);
 }
 
 .appContainer {
   height: 100vh;
-  position: relative;
-  z-index: 2;
-}
-
-.bcgAnim {
-  z-index: 1;
 }
 
 .contentBox {
@@ -54,13 +29,9 @@ body {
   padding: 0 4vw 0 4vw;
 }
 
-.intro {
-  height: 8%;
-  color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 4vw 0 4vw;
+.fft {
+  width: 100%;
+  height: 50px;
 }
 
 #trackMetadata {
@@ -250,171 +221,3 @@ body {
     box-shadow: 9991px -16px 0 0 var(--text-color), 9991px 0 0 0 var(--text-color), 10007px 0 0 0 var(--text-color);
   }
 }
-
-.beam {
-  position: absolute;
-  width: 0px;
-  opacity: 0.75;
-  background-color: rgb(216, 30, 30);
-  box-shadow: #ecd4d4 0px 0px 20px 2px;
-  opacity: 0;
-  top: 100vh;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-}
-
-$box-shadows: var(--dancing-color-1), var(--dancing-color-2), var(--dancing-color-3), var(--dancing-color-4),
-  var(--dancing-color-5), var(--dancing-color-6), var(--dancing-color-7), var(--dancing-color-8), var(--dancing-color-9),
-  var(--dancing-color-10), var(--dancing-color-11), var(--dancing-color-12), var(--dancing-color-13),
-  var(--dancing-color-14), var(--dancing-color-15), var(--dancing-color-16);
-
-$transforms: 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7, 1, 1.6, 0.5, 1.2, 2.2, 0.8, 3.2, 1.7;
-
-$lefts: -93.5%, -81%, -68.5%, -56%, -43.5%, -31%, -18.5%, -6%, 6.5%, 19%, 31.5%, 44%, 56.5%, 69%, 81.5%, 94%;
-
-@mixin beamClass($class, $box-shadow, $transform, $left, $animTime) {
-  .#{$class} {
-    box-shadow: $box-shadow 0px 0px 20px 2px;
-    transform: scale($transform);
-    left: $left;
-    animation: floatUp $animTime infinite linear;
-  }
-}
-
-@for $i from 1 through 15 {
-  @include beamClass(x#{$i}, nth($box-shadows, $i), nth($transforms, $i), nth($lefts, $i), var(--dancing-s));
-}
-
-@keyframes floatUp {
-  0% {
-    top: 100vh;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  20% {
-    top: 0vh;
-    opacity: 0.8;
-  }
-  30% {
-    opacity: 1;
-  }
-  40% {
-    top: -100vh;
-    opacity: 0;
-  }
-  50% {
-    top: -100vh;
-    opacity: 0;
-  }
-  60% {
-    opacity: 1;
-  }
-  70% {
-    top: 0vh;
-    opacity: 0.8;
-  }
-  80% {
-    opacity: 1;
-  }
-  90% {
-    top: 100vh;
-    opacity: 0;
-  }
-}
-// @keyframes floatUp {
-//   0% {
-//     top: 100vh;
-//     opacity: 0;
-//   }
-//   25% {
-//     opacity: 1;
-//   }
-//   50% {
-//     top: 0vh;
-//     opacity: 0.8;
-//   }
-//   75% {
-//     opacity: 1;
-//   }
-//   100% {
-//     top: -100vh;
-//     opacity: 0;
-//   }
-// }
-
-// .x8 {
-//   -webkit-animation: floatUp var(--dancing-s) infinite linear;
-//   -moz-animation: floatUp var(--dancing-s) infinite linear;
-//   -o-animation: floatUp var(--dancing-s) infinite linear;
-//   animation: floatUp var(--dancing-s) infinite linear;
-//   -webkit-transform: scale(1.7);
-//   -moz-transform: scale(1.7);
-//   -o-transform: scale(1.7);
-//   transform: scale(1.7);
-//   left: 85%;
-// }
-
-// @-webkit-keyframes floatUp {
-//   0% {
-//     top: 100vh;
-//     opacity: 0;
-//   }
-//   25% {
-//     opacity: 1;
-//   }
-//   50% {
-//     top: 0vh;
-//     opacity: 0.8;
-//   }
-//   75% {
-//     opacity: 1;
-//   }
-//   100% {
-//     top: -100vh;
-//     opacity: 0;
-//   }
-// }
-// @-moz-keyframes floatUp {
-//   0% {
-//     top: 100vh;
-//     opacity: 0;
-//   }
-//   25% {
-//     opacity: 1;
-//   }
-//   50% {
-//     top: 0vh;
-//     opacity: 0.8;
-//   }
-//   75% {
-//     opacity: 1;
-//   }
-//   100% {
-//     top: -100vh;
-//     opacity: 0;
-//   }
-// }
-// @-o-keyframes floatUp {
-//   0% {
-//     top: 100vh;
-//     opacity: 0;
-//   }
-//   25% {
-//     opacity: 1;
-//   }
-//   50% {
-//     top: 0vh;
-//     opacity: 0.8;
-//   }
-//   75% {
-//     opacity: 1;
-//   }
-//   100% {
-//     top: -100vh;
-//     opacity: 0;
-//   }
-// }
