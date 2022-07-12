@@ -18,16 +18,43 @@ const FFTviz = ({ players }) => {
   const draw = () => {
     requestAnimationFrame(draw);
     const fftVals = fft.getValue();
-    const cc = ctxRef.current;
+    const ctxr = ctxRef.current;
 
-    cc.clearRect(0, 0, 500, 500);
+    ctxr.clearRect(0, 0, 500, 500);
 
-    let p = 0;
-    for (let i = 0; i < 16; i++) {
-      p += canvasRef.current.getBoundingClientRect().width / 16;
-      cc.fillStyle = 'green';
-      const up = fftVals[i] * -1 + i * 2;
-      cc.fillRect(0, up, p, 100);
+    const dots = [];
+    // const dots2 = [];
+    for (let i = 0; i < 6; i++) dots.push(fftVals[i]);
+    // for (let i = 8; i > 0; i--) dots2.push(fftVals[i]);
+    // const dots2 = [...dots];
+    // dots2.reverse();
+    // const dotsFinal = dots2.concat(dots);
+    const dots2 = [...dots].reverse();
+    const dotsFinal = [];
+    for (let i = 0; i < 6; i++) {
+      dotsFinal.push(dots[i]);
+      dotsFinal.push(dots2[i]);
+    }
+
+    const c = () => canvasRef.current.getBoundingClientRect().width / 16;
+    let p = c();
+    const connections = 12;
+    for (let i = 0; i < connections; i++) {
+      let prep = p;
+      // i % 2 === 0 ? (ctxr.fillStyle = 'green') : (ctxr.fillStyle = 'purple');
+      // const up = Math.log(fftVals[i] * -1) * 20;
+      // const up = i%2===0?
+      // ctxr.fillRect(0, fftVals[i] * -1, p, 500);
+      ctxr.lineWidth = 2;
+      ctxr.beginPath();
+      ctxr.strokeStyle = 'white';
+      ctxr.moveTo(p, 80);
+      if (i + 1 !== connections) {
+        ctxr.lineTo(prep + c() / 2, dotsFinal[i] * -1);
+        ctxr.lineTo(prep + c(), 80);
+      }
+      ctxr.stroke();
+      p += c();
     }
   };
 
@@ -41,7 +68,7 @@ const FFTviz = ({ players }) => {
 
   return (
     <div className="contentBox">
-      <button onClick={() => click()}>click</button>
+      {/* <button onClick={() => click()}>click</button> */}
       <canvas ref={canvasRef} className="fft" />
     </div>
   );
