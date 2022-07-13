@@ -17,19 +17,6 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
   });
 };
 
-const stl = document.documentElement.style;
-
-const pickBcgColors = (loopStates, beamsNum, groupParams) => {
-  const groupStates = Object.keys(loopStates).map((group) => loopStates[group].some((p) => p));
-
-  for (let i = 1; i < beamsNum + 1; i++) {
-    const groupIndex = Math.floor((i - 1) / 4);
-    groupStates[groupIndex]
-      ? stl.setProperty(`--dancing-color-${i}`, groupParams[`group${groupIndex + 1}`].color)
-      : stl.setProperty(`--dancing-color-${i}`, 'var(--pad-resting-background-color');
-  }
-};
-
 let Clock;
 
 const Sequencer = ({ BPM, groupParams, players }) => {
@@ -65,7 +52,6 @@ const Sequencer = ({ BPM, groupParams, players }) => {
 
       setActiveLoops({ ...qls });
       activeLoopsRef.current = { ...qls };
-      // pickBcgColors(activeLoopsRef.current, 16, groupParams);
 
       const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
       if (willTransportStop) {

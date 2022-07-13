@@ -4,7 +4,7 @@ import { FFT, Transport } from 'tone';
 const FFTcenter = 80;
 const initialxOffset = 3;
 const FFTlinesWidth = 2;
-const FFTdensity = 16 * 2;
+const FFTdensity = 16 * 8;
 const fft = new FFT(FFTdensity);
 const upperBound = 110;
 const lowerBound = 70;

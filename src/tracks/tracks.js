@@ -2,7 +2,7 @@ export const tracks = [
   {
     title: 'Phonk',
     producer: 'Zaion',
-    genre: 'phunk',
+    genre: 'funk',
     folder: 'phonk',
     BPM: 125,
     route: 'Phonk',
