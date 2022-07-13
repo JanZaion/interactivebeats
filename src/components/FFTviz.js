@@ -8,6 +8,7 @@ const FFTdensity = 16 * 8;
 const fft = new FFT(FFTdensity);
 const upperBound = 110;
 const lowerBound = 70;
+const FFTcolor = 'white';
 
 const FFTviz = ({ players }) => {
   players.forEach((player) => player.fan(fft));
@@ -32,7 +33,7 @@ const FFTviz = ({ players }) => {
     for (let i = 0; i < FFTdensity; i++) {
       ctxr.lineWidth = FFTlinesWidth;
       ctxr.beginPath();
-      ctxr.strokeStyle = 'white';
+      ctxr.strokeStyle = FFTcolor;
       ctxr.moveTo(xOffset, FFTcenter);
       ctxr.lineTo(xOffset, upperBound);
       ctxr.lineTo(xOffset, lowerBound);
@@ -53,9 +54,9 @@ const FFTviz = ({ players }) => {
 
     let xOffset = initialxOffset;
     for (let i = 0; i < FFTdensity; i++) {
-      ctxr.lineWidth = FFTlinesWidth;
       ctxr.beginPath();
-      ctxr.strokeStyle = 'white';
+      ctxr.lineWidth = FFTlinesWidth;
+      ctxr.strokeStyle = FFTcolor;
       ctxr.moveTo(xOffset, FFTcenter);
       const fftVal1 = lines[i] * -1;
       ctxr.lineTo(xOffset, fftVal1 > upperBound ? upperBound : fftVal1);
@@ -66,7 +67,11 @@ const FFTviz = ({ players }) => {
     }
   };
 
-  return <div className="contentBox">{<canvas ref={canvasRef} className="fft" />}</div>;
+  return (
+    <div className="contentBox">
+      <canvas ref={canvasRef} className="fft" />
+    </div>
+  );
 };
 
 export default FFTviz;
