@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 const TrackLoader = ({ players, track, setSelectDisabled }) => {
   const [areTracksLoaded, setAreTracksLoaded] = useState(false);
-  const { groupParams, BPM, producer, genre, folder, opusSize, wavSize } = track;
+  const { groupParams, BPM, producer, genre, folder, opusSize, wavSize, tick } = track;
   const UA = navigator.userAgent;
   const apple = UA.indexOf('Macintosh') !== -1 || UA.indexOf('iPhone') !== -1 || UA.indexOf('iPad') !== -1;
   const audioFormat = apple ? 'wav' : 'opus';
@@ -29,7 +29,7 @@ const TrackLoader = ({ players, track, setSelectDisabled }) => {
   return (
     <>
       <TrackMetadata producer={producer} genre={genre} size={apple ? wavSize : opusSize} />
-      {areTracksLoaded ? <Sequencer BPM={BPM} groupParams={groupParams} players={players} /> : <Loading />}
+      {areTracksLoaded ? <Sequencer BPM={BPM} groupParams={groupParams} players={players} tick={tick} /> : <Loading />}
     </>
   );
 };

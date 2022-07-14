@@ -1,6 +1,6 @@
 import Pad from './Pad';
 
-const InstrumentGroup = ({ group, groupName, handlePadClick, queuedLoopsGroup, activeLoopsGroup, color }) => {
+const InstrumentGroup = ({ group, groupName, handlePadClick, queuedLoopsGroup, activeLoopsGroup, color, tick }) => {
   return (
     <div className="instrumentGroup">
       <div className="instrumentGroupName">{groupName}</div>
@@ -9,6 +9,7 @@ const InstrumentGroup = ({ group, groupName, handlePadClick, queuedLoopsGroup, a
           key={index}
           id={index}
           group={group}
+          tick={tick}
           handlePadClick={handlePadClick}
           activePad={play}
           queuedPad={queuedLoopsGroup[index]}

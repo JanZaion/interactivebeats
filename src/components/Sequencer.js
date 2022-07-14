@@ -19,7 +19,7 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
 
 let Clock;
 
-const Sequencer = ({ BPM, groupParams, players }) => {
+const Sequencer = ({ BPM, groupParams, players, tick }) => {
   useEffect(() => {
     players.forEach((player) => player.stop());
     Transport.stop();
@@ -57,7 +57,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
       if (willTransportStop) {
         Transport.stop().position = 0;
       }
-    }, '1n');
+    }, tick);
 
     return () => Clock.dispose();
   }, []); //eslint-disable-line
@@ -87,6 +87,7 @@ const Sequencer = ({ BPM, groupParams, players }) => {
         <InstrumentGroup
           key={index}
           group={group}
+          tick={tick}
           groupName={groupParams[group].name}
           color={groupParams[group].color}
           handlePadClick={handlePadClick}
