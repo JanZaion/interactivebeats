@@ -33,4 +33,21 @@ export const tracks = [
       group4: { name: 'weird', color: 'red' },
     },
   },
+  {
+    title: 'Layers',
+    producer: 'Zaion',
+    genre: 'drum & bass',
+    folder: 'layers',
+    BPM: 172,
+    route: 'layers',
+    opusSize: 1,
+    wavSize: 2,
+    tick: '4m',
+    groupParams: {
+      group1: { name: 'drums', color: '#1a3046' },
+      group2: { name: 'bass', color: '#6c99c7' },
+      group3: { name: 'leads', color: '#700505' },
+      group4: { name: 'counters', color: '#125457' },
+    },
+  },
 ];
