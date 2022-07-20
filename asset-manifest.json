@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bossequencer/static/css/main.ec560419.css",
-    "main.js": "/bossequencer/static/js/main.749632ab.js",
+    "main.js": "/bossequencer/static/js/main.9f9530fc.js",
     "static/media/10.wav": "/bossequencer/static/media/10.2c8525e0c222517dd081.wav",
     "static/media/11.wav": "/bossequencer/static/media/11.e05c9a6c5d93b87676dd.wav",
     "static/media/12.wav": "/bossequencer/static/media/12.95f18ba9b98b20375dba.wav",
@@ -36,10 +36,10 @@
     "static/media/1.opus": "/bossequencer/static/media/1.607d099909c5c79cec1e.opus",
     "index.html": "/bossequencer/index.html",
     "main.ec560419.css.map": "/bossequencer/static/css/main.ec560419.css.map",
-    "main.749632ab.js.map": "/bossequencer/static/js/main.749632ab.js.map"
+    "main.9f9530fc.js.map": "/bossequencer/static/js/main.9f9530fc.js.map"
   },
   "entrypoints": [
     "static/css/main.ec560419.css",
-    "static/js/main.749632ab.js"
+    "static/js/main.9f9530fc.js"
   ]
 }
