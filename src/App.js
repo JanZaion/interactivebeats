@@ -13,7 +13,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter bassname="/bossequencer">
       <main className="appContainer">
         <FFTviz players={players} />
         <TrackSelector players={players} />
