@@ -14,7 +14,7 @@ const TrackSelector = ({ players }) => {
       <div className="contentBox" id="trackSelector">
         <select
           className="dropdown"
-          onChange={(e) => navigate(`bossequencer/${tracks[e.target.value].route}`)}
+          onChange={(e) => navigate(`interactivebeats/${tracks[e.target.value].route}`)}
           value={activeTrack}
           disabled={selectDisabled}
         >
@@ -27,13 +27,13 @@ const TrackSelector = ({ players }) => {
       </div>
       <Routes>
         <Route
-          path={`bossequencer/:route`}
+          path={`interactivebeats/:route`}
           element={
             <RouteChecker players={players} setActiveTrack={setActiveTrack} setSelectDisabled={setSelectDisabled} />
           }
         />
         <Route
-          path={`bossequencer/`}
+          path={`interactivebeats/`}
           element={<TrackLoader players={players} track={tracks[0]} setSelectDisabled={setSelectDisabled} />}
         />
       </Routes>
