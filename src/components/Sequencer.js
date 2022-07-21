@@ -54,9 +54,7 @@ const Sequencer = ({ BPM, groupParams, players, tick }) => {
       activeLoopsRef.current = { ...qls };
 
       const willTransportStop = ![...qls.group1, ...qls.group2, ...qls.group3, ...qls.group4].some((isQued) => isQued);
-      if (willTransportStop) {
-        Transport.stop().position = 0;
-      }
+      if (willTransportStop) Transport.stop().position = 0;
     }, tick);
 
     return () => Clock.dispose();
