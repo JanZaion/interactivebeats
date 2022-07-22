@@ -21,7 +21,7 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
 let Clock;
 
 const Sequencer = ({ track, players, tick }) => {
-  const { BPM, groupParams, title, description, folder } = track;
+  const { BPM, groupParams, title, description } = track;
 
   useEffect(() => {
     players.forEach((player) => player.stop());
@@ -87,7 +87,12 @@ const Sequencer = ({ track, players, tick }) => {
       <Helmet>
         <meta name="title" property="og:title" content={`interactive beats: ${title}`} />
         <meta name="description" property="og:description" content={description} />
-        <meta property="og:image" content={`../tracks/${folder}/metaimg.JPG`} data-react-helmet="true" />
+        <meta
+          property="og:image"
+          content="%PUBLIC_URL%/metaimg.JPG"
+          href="%PUBLIC_URL%/metaimg.JPG"
+          data-react-helmet="true"
+        />
         <title>{`interactive beats: ${title}`}</title>
       </Helmet>
       <div className="contentBox" id="sequencer">
