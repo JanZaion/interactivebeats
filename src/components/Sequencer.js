@@ -1,5 +1,6 @@
 import InstrumentGroup from './InstrumentGroup';
 import { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import * as Tone from 'tone';
 const { Loop, Transport } = Tone;
 
@@ -19,7 +20,9 @@ const switchAudioLoops = (queuedLoops, activeLoops, loops, time) => {
 
 let Clock;
 
-const Sequencer = ({ BPM, groupParams, players, tick }) => {
+const Sequencer = ({ track, players, tick }) => {
+  const { BPM, groupParams, title, description, folder } = track;
+
   useEffect(() => {
     players.forEach((player) => player.stop());
     Transport.stop();
@@ -80,20 +83,28 @@ const Sequencer = ({ BPM, groupParams, players, tick }) => {
   };
 
   return (
-    <div className="contentBox" id="sequencer">
-      {Object.keys(playPadsOnInit).map((group, index) => (
-        <InstrumentGroup
-          key={index}
-          group={group}
-          tick={tick}
-          groupName={groupParams[group].name}
-          color={groupParams[group].color}
-          handlePadClick={handlePadClick}
-          queuedLoopsGroup={queuedLoopsRef.current[group]}
-          activeLoopsGroup={activeLoops[group]}
-        />
-      ))}
-    </div>
+    <>
+      <Helmet>
+        <meta name="title" property="og:title" content={`interactive beats: ${title}`} />
+        <meta name="description" property="og:description" content={description} />
+        <meta property="og:image" content={`../tracks/${folder}/metaimg.JPG`} data-react-helmet="true" />
+        <title>{`interactive beats: ${title}`}</title>
+      </Helmet>
+      <div className="contentBox" id="sequencer">
+        {Object.keys(playPadsOnInit).map((group, index) => (
+          <InstrumentGroup
+            key={index}
+            group={group}
+            tick={tick}
+            groupName={groupParams[group].name}
+            color={groupParams[group].color}
+            handlePadClick={handlePadClick}
+            queuedLoopsGroup={queuedLoopsRef.current[group]}
+            activeLoopsGroup={activeLoops[group]}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

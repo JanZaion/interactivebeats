@@ -9,6 +9,7 @@ export const tracks = [
     opusSize: '750 KB',
     wavSize: '9.36 MB',
     tick: '1m',
+    description: 'Phonky is phunky! Straight beats, broken beats, funky bass, catchy malodies. We got you covered!',
     groupParams: {
       group1: { name: 'drums', color: '#f6f47b' },
       group2: { name: 'bass', color: '#192f95' },
@@ -26,6 +27,7 @@ export const tracks = [
     opusSize: '975 KB',
     wavSize: '11.0 MB',
     tick: '4m',
+    description: 'A drum & bass track based on a Dm C#M Dm AM chord progression. Why dont you give it a go!',
     groupParams: {
       group1: { name: 'drums', color: '#F5C069' },
       group2: { name: 'bass', color: '#5F4AEB' },
